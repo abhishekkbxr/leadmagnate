@@ -3,6 +3,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import "react-perfect-scrollbar/dist/css/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datetime/css/react-datetime.css";
+import { AuthProvider } from "@/context/AuthContext";
 import NavigationProvider from "@/contentApi/navigationProvider";
 import SettingSideBarProvider from "@/contentApi/settingSideBarProvider";
 import ThemeCustomizer from "@/components/shared/ThemeCustomizer";
@@ -16,11 +17,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <SettingSideBarProvider>
-          <NavigationProvider>
-            {children}
-          </NavigationProvider>
-        </SettingSideBarProvider>
+        <AuthProvider>
+          <SettingSideBarProvider>
+            <NavigationProvider>
+              {children}
+            </NavigationProvider>
+          </SettingSideBarProvider>
+        </AuthProvider>
         <ThemeCustomizer />
       </body>
     </html>

@@ -9,6 +9,7 @@ import NavigationManu from '@/components/shared/navigationMenu/NavigationMenu'
 import StorageDetails from '@/components/storage/StorageDetails'
 import useBootstrapUtils from '@/hooks/useBootstrapUtils'
 import dynamic from 'next/dynamic'
+import withAuth from '@/hoc/withAuth'
 const ComposeMailPopUp = dynamic(() => import('@/components/emails/ComposeMailPopup'), { ssr: false })
 const TasksDetails = dynamic(() => import('@/components/tasks/TasksDetails'), { ssr: false })
 const AddTask = dynamic(() => import('@/components/tasks/AddTask'), { ssr: false })
@@ -59,4 +60,4 @@ const ApplicationsLayout = ({ children }) => {
     )
 }
 
-export default ApplicationsLayout
+export default withAuth(ApplicationsLayout)
