@@ -6,17 +6,16 @@ import Loading from '@/components/shared/Loading';
 
 const withAuth = (WrappedComponent) => {
     const Wrapper = (props) => {
-        const { isAuthenticated, user } = useAuth();
+        const { isAuthenticated, loading } = useAuth();
         const router = useRouter();
 
         useEffect(() => {
-            if (user === undefined) return;
-            if (!isAuthenticated) {
+            if (!loading && !isAuthenticated) {
                 router.replace('/authentication/login/cover');
             }
-        }, [isAuthenticated, router, user]);
+        }, [isAuthenticated, loading, router]);
 
-        if (user === undefined) {
+        if (loading) {
             return <Loading />;
         }
         if (isAuthenticated) {
