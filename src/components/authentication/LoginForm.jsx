@@ -40,7 +40,7 @@ const LoginForm = ({ registerPath, resetPath }) => {
                     title: 'Success',
                     text: data.message,
                 }).then(() => {
-                    router.push('/dashboards/crm');
+                    router.push('/');
                 });
             } else {
                 MySwal.fire({
