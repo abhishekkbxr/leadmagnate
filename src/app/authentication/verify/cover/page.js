@@ -1,6 +1,6 @@
 import OtpVerifyForm from '@/components/authentication/OtpVerifyForm'
 import Image from 'next/image'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const page = () => {
   return (
@@ -18,7 +18,9 @@ const page = () => {
             <div className="wd-50 mb-5">
               <img src="/images/logo-abbr.png" alt="img" className="img-fluid" />
             </div>
-            <OtpVerifyForm />
+            <Suspense fallback={<div>Loading...</div>}>
+              <OtpVerifyForm />
+            </Suspense>
           </div>
         </div>
       </div>

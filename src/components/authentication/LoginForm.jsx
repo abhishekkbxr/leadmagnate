@@ -1,19 +1,74 @@
+'use client'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import { FiFacebook, FiGithub, FiTwitter } from 'react-icons/fi'
+import { useAuth } from '@/context/AuthContext'
+import { useRouter } from 'next/navigation'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { BASE_URL } from '@/utils/api'
+
+const MySwal = withReactContent(Swal)
 
 const LoginForm = ({ registerPath, resetPath }) => {
+    const { login } = useAuth();
+    const router = useRouter();
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`${BASE_URL}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            const data = await response.json();
+            if (data.success) {
+                login(data.data.user, data.data.token, data.data.expiresAt);
+                MySwal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: data.message,
+                }).then(() => {
+                    router.push('/');
+                });
+            } else {
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: data.message || 'Something went wrong!',
+                });
+            }
+        } catch (error) {
+            MySwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            });
+        }
+    };
+
     return (
         <>
             <h2 className="fs-20 fw-bolder mb-4">Login</h2>
             <h4 className="fs-13 fw-bold mb-2">Login to your account</h4>
             <p className="fs-12 fw-medium text-muted">Thank you for get back <strong>Nelel</strong> web applications, let's access our the best recommendation for you.</p>
-            <form action="index.html" className="w-100 mt-4 pt-2">
+            <form onSubmit={handleSubmit} className="w-100 mt-4 pt-2">
                 <div className="mb-4">
-                    <input type="email" className="form-control" placeholder="Email or Username" defaultValue="wrapcode.info@gmail.com" required />
+                    <input type="email" name="email" className="form-control" placeholder="Email" value={formData.email} onChange={handleChange} required />
                 </div>
                 <div className="mb-3">
-                    <input type="password" className="form-control" placeholder="Password" defaultValue="123456" required />
+                    <input type="password" name="password" className="form-control" placeholder="Password" value={formData.password} onChange={handleChange} required />
                 </div>
                 <div className="d-flex align-items-center justify-content-between">
                     <div>

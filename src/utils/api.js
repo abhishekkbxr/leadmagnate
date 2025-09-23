@@ -1,0 +1,1 @@
+export const BASE_URL = 'http://103.175.31.236/leadmagnet/api/api';
