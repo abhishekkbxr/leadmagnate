@@ -5,8 +5,9 @@ import useBootstrapUtils from '@/hooks/useBootstrapUtils'
 import SettingSidebar from '@/components/setting/SettingSidebar'
 import Header from '@/components/shared/header/Header'
 import { usePathname } from 'next/navigation'
+import withAuth from '@/hoc/withAuth'
 
-const layout = ({ children }) => {
+const SettingsLayout = ({ children }) => {
     const pathName = usePathname()
     useBootstrapUtils(pathName)
 
@@ -26,4 +27,4 @@ const layout = ({ children }) => {
     )
 }
 
-export default layout
+export default withAuth(SettingsLayout)

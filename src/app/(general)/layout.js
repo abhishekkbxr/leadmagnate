@@ -5,10 +5,11 @@ import NavigationManu from "@/components/shared/navigationMenu/NavigationMenu";
 import SupportDetails from "@/components/supportDetails";
 import dynamic from "next/dynamic";
 import useBootstrapUtils from "@/hooks/useBootstrapUtils";
+import withAuth from "@/hoc/withAuth";
 
 // const useBootstrapUtils = dynamic(() => import('@/hooks/useBootstrapUtils'), { ssr: false })
 
-const layout = ({ children }) => {
+const GeneralLayout = ({ children }) => {
     const pathName = usePathname()
     useBootstrapUtils(pathName)
 
@@ -26,4 +27,4 @@ const layout = ({ children }) => {
     )
 }
 
-export default layout
+export default withAuth(GeneralLayout)
