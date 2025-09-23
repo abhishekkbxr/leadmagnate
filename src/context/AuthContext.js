@@ -7,6 +7,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
+    const [loading, setLoading] = useState(true);
     const router = useRouter();
 
     useEffect(() => {
@@ -22,6 +23,7 @@ export const AuthProvider = ({ children }) => {
                 setUser(JSON.parse(storedUser));
             }
         }
+        setLoading(false);
     }, []);
 
     const login = (userData, authToken, expiresAt) => {
@@ -50,7 +52,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, token, login, logout, signup, isAuthenticated: !!token }}>
+        <AuthContext.Provider value={{ user, token, loading, login, logout, signup, isAuthenticated: !!token }}>
             {children}
         </AuthContext.Provider>
     );
