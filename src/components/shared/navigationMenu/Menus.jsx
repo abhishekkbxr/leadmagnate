@@ -38,7 +38,7 @@ const Menus = () => {
         { id: 2, name: 'roles', path: '/roles', icon: 'feather-shield' },
         { id: 3, name: 'organisation', path: '/organisation', icon: 'feather-briefcase' },
         { id: 4, name: 'user', path: '/user', icon: 'feather-users' },
-        { id: 5, name: 'permission', path: '/permission', icon: 'feather-key' },
+        { id: 5, name: 'permission', path: '/permission', icon: 'feather-lock' },
         {
             id: 6,
             name: 'leads',
