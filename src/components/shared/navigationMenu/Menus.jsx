@@ -19,7 +19,10 @@ const Menus = () => {
         }
     }, [pathName]);
 
-    const menuList = user?.modules || [];
+    const menuList = user?.modules?.filter(module => {
+        const { create, read, update, delete: deletePermission } = module.permissions;
+        return create || read || update || deletePermission;
+    }) || [];
 
     return (
         <>
