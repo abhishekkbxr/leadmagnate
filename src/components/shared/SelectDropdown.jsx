@@ -7,7 +7,12 @@ const SelectDropdown = ({ options, selectedOption, onSelectOption, className, de
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [openUpwards, setOpenUpwards] = useState(false);
-    const [localSelectedOption, setLocalSelectedOption] = useState();
+    const [localSelectedOption, setLocalSelectedOption] = useState(() => {
+        if (defaultSelect) {
+            return options?.find(option => option.value?.toLowerCase() === defaultSelect?.toLowerCase()) || null;
+        }
+        return null;
+    });
     const ref = useRef()
 
     const dropdownRef = useRef(null);
