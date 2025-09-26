@@ -5,7 +5,9 @@ import { FiAlertOctagon, FiArchive, FiClock, FiEdit3, FiEye, FiMoreHorizontal, F
 import Dropdown from '@/components/shared/Dropdown';
 import SelectDropdown from '@/components/shared/SelectDropdown';
 import getIcon from '@/utils/getIcon';
-import { leadTableData } from '@/utils/fackData/leadTableData';
+import { BASE_URL } from '@/utils/api';
+import LeadView from './LeadView';
+import { useAuth } from '@/context/AuthContext';
 
 
 const actions = [
@@ -34,6 +36,35 @@ const TableCell = memo(({ options, defaultSelect }) => {
 
 
 const LeadssTable = () => {
+    const { token } = useAuth();
+    const [leads, setLeads] = useState([]);
+    const [selectedLeadId, setSelectedLeadId] = useState(null);
+
+    const handleViewLead = (leadId) => {
+        setSelectedLeadId(leadId);
+    };
+
+    useEffect(() => {
+        if (token) {
+            const fetchLeads = async () => {
+                try {
+                    const res = await fetch(`${BASE_URL}/leads?module_id=7&action=read`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    const result = await res.json();
+                    if (result.success) {
+                        setLeads(result.data);
+                    }
+                } catch (error) {
+                    console.error("Error fetching leads:", error);
+                }
+            };
+            fetchLeads();
+        }
+    }, [token]);
+
     const columns = [
         {
             accessorKey: 'id',
@@ -71,22 +102,15 @@ const LeadssTable = () => {
         },
 
         {
-            accessorKey: 'customer',
+            accessorKey: 'full_name',
             header: () => 'Customer',
             cell: (info) => {
-                const roles = info.getValue();
+                const fullName = info.getValue();
                 return (
                     <a href="#" className="hstack gap-3">
-                        {
-                            roles?.img ?
-                                <div className="avatar-image avatar-md">
-                                    <img src={roles?.img} alt="" className="img-fluid" />
-                                </div>
-                                :
-                                <div className="text-white avatar-text user-avatar-text avatar-md">{roles?.name.substring(0, 1)}</div>
-                        }
+                        <div className="text-white avatar-text user-avatar-text avatar-md">{fullName?.substring(0, 1)}</div>
                         <div>
-                            <span className="text-truncate-1-line">{roles?.name}</span>
+                            <span className="text-truncate-1-line">{fullName}</span>
                         </div>
                     </a>
                 )
@@ -98,16 +122,16 @@ const LeadssTable = () => {
             cell: (info) => <a href="apps-email.html">{info.getValue()}</a>
         },
         {
-            accessorKey: 'source',
+            accessorKey: 'source_page_name',
             header: () => 'Source',
             cell: (info) => {
-                const x = info.getValue()
+                const source = info.getValue();
                 return (
                     <div className="hstack gap-2">
                         <div className="avatar-text avatar-sm">
-                            {getIcon(x.icon)}
+                            {getIcon('website')}
                         </div>
-                        <a href="#">{x.media}</a>
+                        <a href="#">{source}</a>
                     </div>
                 )
             }
@@ -121,22 +145,33 @@ const LeadssTable = () => {
             // }
         },
         {
-            accessorKey: 'date',
+            accessorKey: 'created_at',
             header: () => 'Date',
+            cell: (info) => new Date(info.getValue()).toLocaleDateString()
         },
         {
             accessorKey: 'status',
             header: () => 'Status',
-            cell: (info) => <TableCell options={info?.getValue().status} defaultSelect={info?.getValue().defaultSelect} />
+            cell: (info) => {
+                const statusOptions = [
+                    { label: 'New', value: 'new' },
+                    { label: 'Contacted', value: 'contacted' },
+                    { label: 'Qualified', value: 'qualified' },
+                    { label: 'Lost', value: 'lost' },
+                    { label: 'Won', value: 'won' },
+                ];
+                const currentStatus = info.getValue();
+                return <TableCell options={statusOptions} defaultSelect={currentStatus} />
+            }
         },
         {
             accessorKey: 'actions',
             header: () => "Actions",
-            cell: info => (
+            cell: ({ row }) => (
                 <div className="hstack gap-2 justify-content-end">
-                    <a href="proposal-view.html" className="avatar-text avatar-md">
+                    <button onClick={() => handleViewLead(row.original.id)} className="avatar-text avatar-md">
                         <FiEye />
-                    </a>
+                    </button>
                     <Dropdown dropdownItems={actions} triggerClassNaclassName='avatar-md' triggerPosition={"0,21"} triggerIcon={<FiMoreHorizontal />} />
                 </div>
             ),
@@ -147,7 +182,11 @@ const LeadssTable = () => {
     ]
     return (
         <>
-            <Table data={leadTableData} columns={columns} />
+            {selectedLeadId ? (
+                <LeadView leadId={selectedLeadId} />
+            ) : (
+                <Table data={leads} columns={columns} />
+            )}
         </>
     )
 }

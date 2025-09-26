@@ -9,8 +9,8 @@ import SettingSideBarProvider from "@/contentApi/settingSideBarProvider";
 import ThemeCustomizer from "@/components/shared/ThemeCustomizer";
 
 export const metadata = {
-  title: "Duralux | Dashboard",
-  description: "Duralux is a admin Dashboard create for multipurpose,",
+  title: "Lead Magnate | Dashboard",
+  description: "Lead Magnate is a admin Dashboard create for multipurpose,",
 };
 
 export default function RootLayout({ children }) {
