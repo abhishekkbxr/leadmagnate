@@ -21,9 +21,9 @@ def run(playwright):
     page.get_by_placeholder("Password", exact=True).fill(password)
     page.get_by_placeholder("Password again").fill(password)
 
-    # Accept terms and conditions by clicking the labels
-    page.locator("label[for='receiveMial']").click()
-    page.locator("label[for='termsCondition']").click()
+    # Accept terms and conditions using JavaScript
+    page.evaluate("document.getElementById('receiveMial').checked = true")
+    page.evaluate("document.getElementById('termsCondition').checked = true")
 
     # Click the create account button
     page.get_by_role("button", name="Create Account").click()
