@@ -8,6 +8,7 @@ import getIcon from '@/utils/getIcon';
 import { BASE_URL } from '@/utils/api';
 import LeadView from './LeadView';
 import { useAuth } from '@/context/AuthContext';
+import { useUsers } from '@/context/UserContext';
 
 
 const actions = [
@@ -37,6 +38,7 @@ const TableCell = memo(({ options, defaultSelect }) => {
 
 const LeadssTable = () => {
     const { token } = useAuth();
+    const { users } = useUsers();
     const [leads, setLeads] = useState([]);
     const [selectedLeadId, setSelectedLeadId] = useState(null);
 
@@ -148,6 +150,15 @@ const LeadssTable = () => {
             accessorKey: 'created_at',
             header: () => 'Date',
             cell: (info) => new Date(info.getValue()).toLocaleDateString()
+        },
+        {
+            accessorKey: 'assigned_to',
+            header: () => 'Assigned To',
+            cell: (info) => {
+                const userOptions = users.map(user => ({ label: user.name, value: user.id }));
+                const currentAssignee = info.getValue();
+                return <TableCell options={userOptions} defaultSelect={currentAssignee} />
+            }
         },
         {
             accessorKey: 'status',
