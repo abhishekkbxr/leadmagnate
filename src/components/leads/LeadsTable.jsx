@@ -9,6 +9,7 @@ import { BASE_URL } from '@/utils/api';
 import LeadView from './LeadView';
 import { useAuth } from '@/context/AuthContext';
 import { useUsers } from '@/context/UserContext';
+import { useOrganisations } from '@/context/OrganisationContext';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -26,7 +27,7 @@ const actions = [
     { label: "Delete", icon: <FiTrash2 />, },
 ];
 
-const TableCell = memo(({ options, defaultSelect, onAssign, leadId }) => {
+const TableCell = memo(function TableCell({ options, defaultSelect, onAssign, leadId }) {
     const [selectedOption, setSelectedOption] = useState(null);
 
     const handleSelect = (option) => {
@@ -47,10 +48,33 @@ const TableCell = memo(({ options, defaultSelect, onAssign, leadId }) => {
 });
 
 
+const HeaderCheckbox = ({ table }) => {
+    const checkboxRef = React.useRef(null);
+
+    useEffect(() => {
+        if (checkboxRef.current) {
+            checkboxRef.current.indeterminate = table.getIsSomeRowsSelected();
+        }
+    }, [table.getIsSomeRowsSelected()]);
+
+    return (
+        <input
+            type="checkbox"
+            className="custom-table-checkbox"
+            ref={checkboxRef}
+            checked={table.getIsAllRowsSelected()}
+            onChange={table.getToggleAllRowsSelectedHandler()}
+        />
+    );
+};
+
 const LeadssTable = () => {
     const { token } = useAuth();
     const { users } = useUsers();
+    const { organisations } = useOrganisations();
     const [leads, setLeads] = useState([]);
+    const [filteredLeads, setFilteredLeads] = useState([]);
+    const [selectedOrganisation, setSelectedOrganisation] = useState(null);
     const [selectedLeadId, setSelectedLeadId] = useState(null);
 
     const handleViewLead = (leadId) => {
@@ -104,6 +128,7 @@ const LeadssTable = () => {
                     const result = await res.json();
                     if (result.success) {
                         setLeads(result.data);
+                        setFilteredLeads(result.data);
                     }
                 } catch (error) {
                     console.error("Error fetching leads:", error);
@@ -113,28 +138,23 @@ const LeadssTable = () => {
         }
     }, [token]);
 
+    useEffect(() => {
+        if (selectedOrganisation && selectedOrganisation.value !== 'all') {
+            setFilteredLeads(leads.filter(lead => lead.organisation_id === selectedOrganisation.value));
+        } else {
+            setFilteredLeads(leads);
+        }
+    }, [selectedOrganisation, leads]);
+
+    const organisationOptions = [
+        { label: 'All Organisations', value: 'all' },
+        ...organisations.map(org => ({ label: org.name, value: org.id }))
+    ];
+
     const columns = [
         {
             accessorKey: 'id',
-            header: ({ table }) => {
-                const checkboxRef = React.useRef(null);
-
-                useEffect(() => {
-                    if (checkboxRef.current) {
-                        checkboxRef.current.indeterminate = table.getIsSomeRowsSelected();
-                    }
-                }, [table.getIsSomeRowsSelected()]);
-
-                return (
-                    <input
-                        type="checkbox"
-                        className="custom-table-checkbox"
-                        ref={checkboxRef}
-                        checked={table.getIsAllRowsSelected()}
-                        onChange={table.getToggleAllRowsSelectedHandler()}
-                    />
-                );
-            },
+            header: ({ table }) => <HeaderCheckbox table={table} />,
             cell: ({ row }) => (
                 <input
                     type="checkbox"
@@ -247,7 +267,19 @@ const LeadssTable = () => {
             {selectedLeadId ? (
                 <LeadView leadId={selectedLeadId} />
             ) : (
-                <Table data={leads} columns={columns} />
+                <>
+                    <div className="d-flex justify-content-end mb-3">
+                        <div style={{ width: '200px' }}>
+                            <SelectDropdown
+                                options={organisationOptions}
+                                defaultSelect="All Organisations"
+                                onSelectOption={setSelectedOrganisation}
+                                selectedOption={selectedOrganisation}
+                            />
+                        </div>
+                    </div>
+                    <Table data={filteredLeads} columns={columns} />
+                </>
             )}
         </>
     )

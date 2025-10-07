@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-datetime/css/react-datetime.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { UserProvider } from "@/context/UserContext";
+import { OrganisationProvider } from "@/context/OrganisationContext";
 import NavigationProvider from "@/contentApi/navigationProvider";
 import SettingSideBarProvider from "@/contentApi/settingSideBarProvider";
 import ThemeCustomizer from "@/components/shared/ThemeCustomizer";
@@ -20,11 +21,13 @@ export default function RootLayout({ children }) {
       <body>
         <AuthProvider>
           <UserProvider>
-            <SettingSideBarProvider>
-              <NavigationProvider>
-                {children}
-              </NavigationProvider>
-            </SettingSideBarProvider>
+            <OrganisationProvider>
+              <SettingSideBarProvider>
+                <NavigationProvider>
+                  {children}
+                </NavigationProvider>
+              </SettingSideBarProvider>
+            </OrganisationProvider>
           </UserProvider>
         </AuthProvider>
         <ThemeCustomizer />
