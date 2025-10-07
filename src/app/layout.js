@@ -4,6 +4,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datetime/css/react-datetime.css";
 import { AuthProvider } from "@/context/AuthContext";
+import { UserProvider } from "@/context/UserContext";
 import NavigationProvider from "@/contentApi/navigationProvider";
 import SettingSideBarProvider from "@/contentApi/settingSideBarProvider";
 import ThemeCustomizer from "@/components/shared/ThemeCustomizer";
@@ -18,11 +19,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <AuthProvider>
-          <SettingSideBarProvider>
-            <NavigationProvider>
-              {children}
-            </NavigationProvider>
-          </SettingSideBarProvider>
+          <UserProvider>
+            <SettingSideBarProvider>
+              <NavigationProvider>
+                {children}
+              </NavigationProvider>
+            </SettingSideBarProvider>
+          </UserProvider>
         </AuthProvider>
         <ThemeCustomizer />
       </body>
