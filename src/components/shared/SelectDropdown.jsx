@@ -9,7 +9,7 @@ const SelectDropdown = ({ options, selectedOption, onSelectOption, className, de
     const [openUpwards, setOpenUpwards] = useState(false);
     const [localSelectedOption, setLocalSelectedOption] = useState(() => {
         if (defaultSelect) {
-            return options?.find(option => option.value?.toLowerCase() === defaultSelect?.toLowerCase()) || null;
+            return options?.find(option => String(option.value).toLowerCase() === String(defaultSelect).toLowerCase()) || null;
         }
         return null;
     });
@@ -19,7 +19,7 @@ const SelectDropdown = ({ options, selectedOption, onSelectOption, className, de
 
     useEffect(() => {
         if (defaultSelect) {
-            const defaultOption = options?.find(option => option.value?.toLowerCase() === defaultSelect?.toLowerCase());
+            const defaultOption = options?.find(option => String(option.value).toLowerCase() === String(defaultSelect).toLowerCase());
             setLocalSelectedOption(defaultOption || null); // Set default if found
         }
 
