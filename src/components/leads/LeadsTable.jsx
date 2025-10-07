@@ -9,6 +9,10 @@ import { BASE_URL } from '@/utils/api';
 import LeadView from './LeadView';
 import { useAuth } from '@/context/AuthContext';
 import { useUsers } from '@/context/UserContext';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 
 const actions = [
@@ -22,15 +26,22 @@ const actions = [
     { label: "Delete", icon: <FiTrash2 />, },
 ];
 
-const TableCell = memo(({ options, defaultSelect }) => {
+const TableCell = memo(({ options, defaultSelect, onAssign, leadId }) => {
     const [selectedOption, setSelectedOption] = useState(null);
+
+    const handleSelect = (option) => {
+        setSelectedOption(option);
+        if (onAssign) {
+            onAssign(leadId, option.value);
+        }
+    };
 
     return (
         <SelectDropdown
             options={options}
             defaultSelect={defaultSelect}
             selectedOption={selectedOption}
-            onSelectOption={(option) => setSelectedOption(option)}
+            onSelectOption={handleSelect}
         />
     );
 });
@@ -44,6 +55,41 @@ const LeadssTable = () => {
 
     const handleViewLead = (leadId) => {
         setSelectedLeadId(leadId);
+    };
+
+    const handleAssignLead = async (lead_id, assigned_user_id) => {
+        try {
+            const res = await fetch(`${BASE_URL}/assignments/manual-assign`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ lead_id, assigned_user_id })
+            });
+            const result = await res.json();
+            if (result.success) {
+                MySwal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: result.message,
+                });
+                setLeads(leads.map(lead => lead.id === lead_id ? { ...lead, assigned_user_id } : lead));
+            } else {
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: result.message || 'Something went wrong!',
+                });
+            }
+        } catch (error) {
+            console.error("Error assigning lead:", error);
+            MySwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Failed to assign lead.',
+            });
+        }
     };
 
     useEffect(() => {
@@ -152,12 +198,17 @@ const LeadssTable = () => {
             cell: (info) => new Date(info.getValue()).toLocaleDateString()
         },
         {
-            accessorKey: 'assigned_to',
+            accessorKey: 'assigned_user_id',
             header: () => 'Assigned To',
             cell: (info) => {
                 const userOptions = users.map(user => ({ label: user.name, value: user.id }));
                 const currentAssignee = info.getValue();
-                return <TableCell options={userOptions} defaultSelect={currentAssignee} />
+                return <TableCell
+                    options={userOptions}
+                    defaultSelect={currentAssignee}
+                    onAssign={handleAssignLead}
+                    leadId={info.row.original.id}
+                />
             }
         },
         {
