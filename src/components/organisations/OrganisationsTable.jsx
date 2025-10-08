@@ -96,7 +96,7 @@ const OrganisationsTable = () => {
           <Link href={`/organisations/view/${row.original.id}`} className="avatar-text avatar-md">
             <FiEye />
           </Link>
-          <Dropdown dropdownItems={actions(row.original.id)} triggerClassNaclassName='avatar-md' triggerPosition={"0,21"} triggerIcon={<FiMoreHorizontal />} />
+          <Dropdown dropdownItems={actions(row.original.id)} triggerClass='avatar-md' triggerPosition={"0,21"} triggerIcon={<FiMoreHorizontal />} />
         </div>
       ),
       meta: { headerClassName: 'text-end' }

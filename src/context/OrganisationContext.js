@@ -10,20 +10,28 @@ export const OrganisationProvider = ({ children }) => {
     const [organisations, setOrganisations] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const fetchOrganisations = async () => {
+        if (token) {
+            try {
+                setLoading(true);
+                const result = await getOrganisations();
+                if (result.success) {
+                    setOrganisations(result.data);
+                }
+            } catch (error) {
+                console.error("Error fetching organisations:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+    };
+
+    const refreshOrganisations = () => {
+        fetchOrganisations();
+    };
+
     useEffect(() => {
         if (token) {
-            const fetchOrganisations = async () => {
-                try {
-                    const result = await getOrganisations();
-                    if (result.success) {
-                        setOrganisations(result.data);
-                    }
-                } catch (error) {
-                    console.error("Error fetching organisations:", error);
-                } finally {
-                    setLoading(false);
-                }
-            };
             fetchOrganisations();
         } else {
             setLoading(false);
@@ -31,7 +39,7 @@ export const OrganisationProvider = ({ children }) => {
     }, [token]);
 
     return (
-        <OrganisationContext.Provider value={{ organisations, loading }}>
+        <OrganisationContext.Provider value={{ organisations, loading, refreshOrganisations }}>
             {children}
         </OrganisationContext.Provider>
     );

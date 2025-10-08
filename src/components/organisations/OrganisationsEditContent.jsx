@@ -7,11 +7,13 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useRouter } from 'next/navigation'
 import Loading from '@/components/shared/Loading'
+import { useOrganisations } from '@/context/OrganisationContext'
 
 const MySwal = withReactContent(Swal);
 
 const OrganisationsEditContent = ({ organisationId }) => {
     const router = useRouter();
+    const { refreshOrganisations } = useOrganisations();
     const [formData, setFormData] = useState({
         organisation_name: '',
         organisation_email: '',
@@ -34,16 +36,16 @@ const OrganisationsEditContent = ({ organisationId }) => {
                     if (result.success) {
                         const orgData = result.data;
                         setFormData({
-                            organisation_name: orgData.name,
-                            organisation_email: orgData.email,
-                            organisation_phone: orgData.phone,
-                            organisation_website: orgData.website,
-                            organisation_city: orgData.city,
-                            organisation_state: orgData.state,
-                            organisation_country: orgData.country,
-                            organisation_industry: orgData.industry,
-                            organisation_registration_number: orgData.registration_number,
-                            organisation_tax_id: orgData.tax_id,
+                            organisation_name: orgData.name || '',
+                            organisation_email: orgData.email || '',
+                            organisation_phone: orgData.phone || '',
+                            organisation_website: orgData.website || '',
+                            organisation_city: orgData.city || '',
+                            organisation_state: orgData.state || '',
+                            organisation_country: orgData.country || '',
+                            organisation_industry: orgData.industry || '',
+                            organisation_registration_number: orgData.registration_number || '',
+                            organisation_tax_id: orgData.tax_id || '',
                         });
                     }
                 } catch (error) {
@@ -77,6 +79,7 @@ const OrganisationsEditContent = ({ organisationId }) => {
         try {
             const result = await updateOrganisation(organisationId, organisationData);
             if (result.success) {
+                await refreshOrganisations(); // Wait for refresh to complete
                 MySwal.fire({
                     icon: 'success',
                     title: 'Success',
