@@ -47,6 +47,8 @@ const OrganisationsEditContent = ({ organisationId }) => {
                             organisation_registration_number: orgData.registration_number || '',
                             organisation_tax_id: orgData.tax_id || '',
                         });
+                    } else {
+                        console.error("Failed to fetch organisation:", result);
                     }
                 } catch (error) {
                     console.error("Error fetching organisation:", error);
@@ -64,17 +66,18 @@ const OrganisationsEditContent = ({ organisationId }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
         const organisationData = {
-            name: formData.organisation_name,
-            email: formData.organisation_email,
-            phone: formData.organisation_phone,
-            website: formData.organisation_website,
-            city: formData.organisation_city,
-            state: formData.organisation_state,
-            country: formData.organisation_country,
-            industry: formData.organisation_industry,
-            registration_number: formData.organisation_registration_number,
-            tax_id: formData.organisation_tax_id,
+            organisation_name: formData.organisation_name,
+            organisation_email: formData.organisation_email,
+            organisation_phone: formData.organisation_phone,
+            organisation_website: formData.organisation_website,
+            organisation_city: formData.organisation_city,
+            organisation_state: formData.organisation_state,
+            organisation_country: formData.organisation_country,
+            organisation_industry: formData.organisation_industry,
+            organisation_registration_number: formData.organisation_registration_number,
+            organisation_tax_id: formData.organisation_tax_id,
         };
         try {
             const result = await updateOrganisation(organisationId, organisationData);
