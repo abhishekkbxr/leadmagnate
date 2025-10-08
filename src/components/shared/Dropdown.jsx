@@ -66,18 +66,34 @@ const Dropdown = ({
                                     item.checkbox ?
                                         <Checkbox checked={item.checked} id={item.id} name={item.label} className={""} />
                                         :
-
-                                        <Link href={item.link || "#"} target='_blank' className={`${active === item.label ? "active" : ""} dropdown-item`}
-                                            data-bs-toggle={item.link || dataBsToggle} data-bs-target={item.modalTarget} onClick={() => onClick && onClick(item.label, id)}
-                                        >
-                                            {
-                                                isItemIcon ?
-                                                    item.icon && React.cloneElement(item.icon, { className: "me-3", size: 16, strokeWidth: iconStrokeWidth })
-                                                    :
-                                                    <span className={`wd-7 ht-7 rounded-circle me-3 ${item.color}`}></span>
-                                            }
-                                            <span>{item.label}</span>
-                                        </Link>
+                                        item.onClick ? (
+                                            <button 
+                                                type="button"
+                                                className={`${active === item.label ? "active" : ""} dropdown-item border-0 bg-transparent text-start w-100`}
+                                                onClick={item.onClick}
+                                                style={{ cursor: 'pointer' }}
+                                            >
+                                                {
+                                                    isItemIcon ?
+                                                        item.icon && React.cloneElement(item.icon, { className: "me-3", size: 16, strokeWidth: iconStrokeWidth })
+                                                        :
+                                                        <span className={`wd-7 ht-7 rounded-circle me-3 ${item.color}`}></span>
+                                                }
+                                                <span>{item.label}</span>
+                                            </button>
+                                        ) : (
+                                            <Link href={item.link || "#"} target='_blank' className={`${active === item.label ? "active" : ""} dropdown-item`}
+                                                data-bs-toggle={item.link || dataBsToggle} data-bs-target={item.modalTarget} onClick={() => onClick && onClick(item.label, id)}
+                                            >
+                                                {
+                                                    isItemIcon ?
+                                                        item.icon && React.cloneElement(item.icon, { className: "me-3", size: 16, strokeWidth: iconStrokeWidth })
+                                                        :
+                                                        <span className={`wd-7 ht-7 rounded-circle me-3 ${item.color}`}></span>
+                                                }
+                                                <span>{item.label}</span>
+                                            </Link>
+                                        )
                                 }
                             </li>
                         );

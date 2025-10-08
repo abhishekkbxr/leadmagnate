@@ -36,7 +36,16 @@ const Menus = () => {
     const definedMenuList = [
         { id: 1, name: 'dashboard', path: '/', icon: 'feather-airplay' },
         { id: 2, name: 'roles', path: '/roles', icon: 'feather-shield' },
-        { id: 3, name: 'organisation', path: '/organisation', icon: 'feather-briefcase' },
+        {
+            id: 3,
+            name: 'organisation',
+            path: "#",
+            icon: 'feather-briefcase',
+            dropdownMenu: [
+                { id: 1, name: "Organisations", path: "/organisations/list" },
+                { id: 2, name: "Create Organisation", path: "/organisations/create" }
+            ]
+        },
         { id: 4, name: 'user', path: '/user', icon: 'feather-users' },
         { id: 5, name: 'permission', path: '/permission', icon: 'feather-lock' },
         {
