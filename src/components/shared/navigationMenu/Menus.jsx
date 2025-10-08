@@ -38,7 +38,7 @@ const Menus = () => {
         { id: 2, name: 'roles', path: '/roles', icon: 'feather-shield' },
         {
             id: 3,
-            name: 'organisations',
+            name: 'organisation',
             path: "#",
             icon: 'feather-briefcase',
             dropdownMenu: [
