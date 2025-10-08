@@ -272,10 +272,9 @@ const LeadssTable = () => {
             accessorKey: 'assigned_user_id',
             header: () => 'Assigned To',
             cell: (info) => {
-                // Use organization-specific users if an organization is selected, otherwise use all users
-                const availableUsers = selectedOrganisation && selectedOrganisation.value !== 'all' 
-                    ? organisationUsers 
-                    : users;
+                // Filter users based on the individual lead's organisation_id
+                const leadOrganisationId = info.row.original.organisation_id;
+                const availableUsers = users.filter(user => user.organisation_id === leadOrganisationId);
                 const userOptions = availableUsers.map(user => ({ label: user.name, value: user.id }));
                 const currentAssignee = info.getValue();
                 return <TableCell
