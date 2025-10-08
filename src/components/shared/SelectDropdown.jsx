@@ -18,7 +18,9 @@ const SelectDropdown = ({ options, selectedOption, onSelectOption, className, de
     const dropdownRef = useRef(null);
 
     useEffect(() => {
-        if (defaultSelect) {
+        if (selectedOption) {
+            setLocalSelectedOption(selectedOption);
+        } else if (defaultSelect) {
             const defaultOption = options?.find(option => String(option.value).toLowerCase() === String(defaultSelect).toLowerCase());
             setLocalSelectedOption(defaultOption || null); // Set default if found
         }
@@ -33,7 +35,7 @@ const SelectDropdown = ({ options, selectedOption, onSelectOption, className, de
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
-    }, [defaultSelect, options]);
+    }, [defaultSelect, options, selectedOption]);
 
     const toggleDropdown = () => setIsOpen(!isOpen);
 
