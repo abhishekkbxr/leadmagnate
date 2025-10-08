@@ -74,6 +74,7 @@ const LeadssTable = () => {
     const { organisations } = useOrganisations();
     const [leads, setLeads] = useState([]);
     const [filteredLeads, setFilteredLeads] = useState([]);
+    const [organisationUsers, setOrganisationUsers] = useState([]);
     const [selectedOrganisation, setSelectedOrganisation] = useState(null);
     const [selectedLeadId, setSelectedLeadId] = useState(null);
 
@@ -98,7 +99,7 @@ const LeadssTable = () => {
                     title: 'Success',
                     text: result.message,
                 });
-                setLeads(leads.map(lead => lead.id === lead_id ? { ...lead, assigned_user_id } : lead));
+                setFilteredLeads(filteredLeads.map(lead => lead.id === lead_id ? { ...lead, assigned_user_id } : lead));
             } else {
                 MySwal.fire({
                     icon: 'error',
@@ -113,6 +114,63 @@ const LeadssTable = () => {
                 title: 'Oops...',
                 text: 'Failed to assign lead.',
             });
+        }
+    };
+
+    const fetchOrganisationLeads = async (organisationId) => {
+        try {
+            console.log("Fetching leads for organization:", organisationId);
+            const res = await fetch(`${BASE_URL}/leads/organisation/${organisationId}?module_id=7&action=read`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const result = await res.json();
+            console.log("Organisation leads API response:", result);
+            if (result.success && result.data) {
+                setFilteredLeads(result.data);
+                console.log("Filtered leads set:", result.data);
+            } else {
+                console.error("Failed to fetch organisation leads:", result);
+                setFilteredLeads([]);
+            }
+        } catch (error) {
+            console.error("Error fetching organisation leads:", error);
+            setFilteredLeads([]);
+        }
+    };
+
+    const fetchOrganisationUsers = async (organisationId) => {
+        try {
+            console.log("Fetching users for organization:", organisationId);
+            const res = await fetch(`${BASE_URL}/users/organisation/${organisationId}?module_id=3&action=read`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const result = await res.json();
+            console.log("Organisation users API response:", result);
+            if (result.success && result.data) {
+                setOrganisationUsers(result.data);
+                console.log("Organisation users set:", result.data);
+            } else {
+                console.error("Failed to fetch organisation users:", result);
+                setOrganisationUsers([]);
+            }
+        } catch (error) {
+            console.error("Error fetching organisation users:", error);
+            setOrganisationUsers([]);
+        }
+    };
+
+    const handleOrganisationChange = (organisation) => {
+        setSelectedOrganisation(organisation);
+        if (organisation && organisation.value !== 'all') {
+            fetchOrganisationLeads(organisation.value);
+            fetchOrganisationUsers(organisation.value);
+        } else {
+            setFilteredLeads(leads);
+            setOrganisationUsers([]);
         }
     };
 
@@ -138,13 +196,6 @@ const LeadssTable = () => {
         }
     }, [token]);
 
-    useEffect(() => {
-        if (selectedOrganisation && selectedOrganisation.value !== 'all') {
-            setFilteredLeads(leads.filter(lead => lead.organisation_id === selectedOrganisation.value));
-        } else {
-            setFilteredLeads(leads);
-        }
-    }, [selectedOrganisation, leads]);
 
     const organisationOptions = [
         { label: 'All Organisations', value: 'all' },
@@ -221,7 +272,11 @@ const LeadssTable = () => {
             accessorKey: 'assigned_user_id',
             header: () => 'Assigned To',
             cell: (info) => {
-                const userOptions = users.map(user => ({ label: user.name, value: user.id }));
+                // Use organization-specific users if an organization is selected, otherwise use all users
+                const availableUsers = selectedOrganisation && selectedOrganisation.value !== 'all' 
+                    ? organisationUsers 
+                    : users;
+                const userOptions = availableUsers.map(user => ({ label: user.name, value: user.id }));
                 const currentAssignee = info.getValue();
                 return <TableCell
                     options={userOptions}
@@ -268,17 +323,20 @@ const LeadssTable = () => {
                 <LeadView leadId={selectedLeadId} />
             ) : (
                 <>
-                    <div className="d-flex justify-content-end mb-3">
-                        <div style={{ width: '200px' }}>
-                            <SelectDropdown
-                                options={organisationOptions}
-                                defaultSelect="All Organisations"
-                                onSelectOption={setSelectedOrganisation}
-                                selectedOption={selectedOrganisation}
-                            />
-                        </div>
-                    </div>
-                    <Table data={filteredLeads} columns={columns} />
+                    <Table 
+                        data={filteredLeads} 
+                        columns={columns} 
+                        customSearch={
+                            <div style={{ width: '200px' }}>
+                                <SelectDropdown
+                                    options={organisationOptions}
+                                    defaultSelect="All Organisations"
+                                    onSelectOption={handleOrganisationChange}
+                                    selectedOption={selectedOrganisation}
+                                />
+                            </div>
+                        }
+                    />
                 </>
             )}
         </>

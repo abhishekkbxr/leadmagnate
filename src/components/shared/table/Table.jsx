@@ -4,7 +4,7 @@ import TablePagination from './TablePagination'
 import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa'
 import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
 
-const Table = ({data, columns}) => {
+const Table = ({data, columns, customSearch}) => {
     // const [data] = useState([...fackData])
     const [sorting, setSorting] = useState([])
     const [globalFilter, setGlobalFilter] = useState('')
@@ -36,7 +36,7 @@ const Table = ({data, columns}) => {
                 <div className="card-body p-0">
                     <div className="table-responsive">
                         <div className='dataTables_wrapper dt-bootstrap5 no-footer'>
-                            <TableSearch table={table} setGlobalFilter={setGlobalFilter} globalFilter={globalFilter}/>
+                            <TableSearch table={table} setGlobalFilter={setGlobalFilter} globalFilter={globalFilter} customSearch={customSearch}/>
 
                             <div className="row dt-row">
                                 <div className="col-sm-12 px-0">
