@@ -6,11 +6,13 @@ import { createOrganisation } from '@/contentApi/organisationApi'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useRouter } from 'next/navigation'
+import { useOrganisations } from '@/context/OrganisationContext'
 
 const MySwal = withReactContent(Swal);
 
 const OrganisationsCreateContent = () => {
     const router = useRouter();
+    const { refreshOrganisations } = useOrganisations();
     const [formData, setFormData] = useState({
         organisation_name: '',
         organisation_email: '',
@@ -46,6 +48,7 @@ const OrganisationsCreateContent = () => {
         try {
             const result = await createOrganisation(organisationData);
             if (result.success) {
+                await refreshOrganisations(); // Refresh the organisations list
                 MySwal.fire({
                     icon: 'success',
                     title: 'Success',
