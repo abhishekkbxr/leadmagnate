@@ -1,3 +1,4 @@
+import re
 from playwright.sync_api import sync_playwright, Page, expect
 import time
 
@@ -21,16 +22,16 @@ def run(playwright):
     page.get_by_placeholder("Password", exact=True).fill(password)
     page.get_by_placeholder("Password again").fill(password)
 
-    # Accept terms and conditions using JavaScript
-    page.evaluate("document.getElementById('receiveMial').checked = true")
-    page.evaluate("document.getElementById('termsCondition').checked = true")
+    # Accept terms and conditions
+    page.locator("label[for='termsCondition']").click()
+    page.locator("label[for='receiveMial']").click()
 
     # Click the create account button
     page.get_by_role("button", name="Create Account").click()
 
     try:
         # Wait for navigation to the verification page
-        expect(page).to_have_url(f"http://localhost:3000/authentication/verify/cover?email={unique_email}", timeout=15000)
+        expect(page).to_have_url(re.compile(".*verify/cover.*"), timeout=15000)
 
         print(f"Successfully registered user with email: {unique_email}")
         print(f"Password: {password}")

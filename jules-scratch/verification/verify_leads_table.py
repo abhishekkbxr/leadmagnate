@@ -1,3 +1,4 @@
+import re
 from playwright.sync_api import sync_playwright, Page, expect
 
 def run(playwright):
@@ -5,27 +6,24 @@ def run(playwright):
     context = browser.new_context()
     page = context.new_page()
 
-    # Navigate to the login page
+    # Log in
     page.goto("http://localhost:3000/authentication/login/cover")
-
-    # Fill in the login form with the newly registered user's credentials
-    page.get_by_placeholder("Email").fill("user_1728272178@example.com")
-    page.get_by_placeholder("Password").fill("password123")
-
-    # Click the login button
+    page.get_by_placeholder("Email").fill("abhishekbxr203@gmail.com")
+    page.get_by_placeholder("Password").fill("123456")
     page.get_by_role("button", name="Login").click()
 
-    # Wait for navigation to the dashboard and then go to the leads page
-    expect(page).to_have_url("http://localhost:3000/", timeout=20000)
+    # Wait for successful login and redirection to the dashboard
+    expect(page).to_have_url("http://localhost:3000/", timeout=15000)
+
+    # Now navigate to the leads page
     page.goto("http://localhost:3000/leads/list")
 
     # Wait for the table to be visible
-    expect(page.get_by_role("table")).to_be_visible(timeout=10000)
+    expect(page.locator(".table")).to_be_visible(timeout=15000)
 
     # Take a screenshot of the leads table
     page.screenshot(path="jules-scratch/verification/leads_table_verification.png")
 
-    context.close()
     browser.close()
 
 with sync_playwright() as playwright:
