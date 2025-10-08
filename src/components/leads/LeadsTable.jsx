@@ -27,13 +27,13 @@ const actions = [
     { label: "Delete", icon: <FiTrash2 />, },
 ];
 
-const TableCell = memo(function TableCell({ options, defaultSelect, onAssign, leadId }) {
+const TableCell = memo(function TableCell({ options, defaultSelect, onAssign, leadId, organisationId }) {
     const [selectedOption, setSelectedOption] = useState(null);
 
     const handleSelect = (option) => {
         setSelectedOption(option);
         if (onAssign) {
-            onAssign(leadId, option.value);
+            onAssign(leadId, option.value, organisationId);
         }
     };
 
@@ -82,7 +82,7 @@ const LeadssTable = () => {
         setSelectedLeadId(leadId);
     };
 
-    const handleAssignLead = async (lead_id, assigned_user_id) => {
+    const handleAssignLead = async (lead_id, assigned_user_id, organisation_id) => {
         try {
             const res = await fetch(`${BASE_URL}/assignments/manual-assign`, {
                 method: 'POST',
@@ -90,7 +90,7 @@ const LeadssTable = () => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ lead_id, assigned_user_id })
+                body: JSON.stringify({ lead_id, assigned_user_id, organisation_id })
             });
             const result = await res.json();
             if (result.success) {
@@ -282,6 +282,7 @@ const LeadssTable = () => {
                     defaultSelect={currentAssignee}
                     onAssign={handleAssignLead}
                     leadId={info.row.original.id}
+                    organisationId={leadOrganisationId}
                 />
             }
         },
