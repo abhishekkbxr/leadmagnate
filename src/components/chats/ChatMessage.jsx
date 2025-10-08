@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { FiDownload } from 'react-icons/fi';
 
 // Single Chat Component
@@ -8,7 +9,7 @@ const ChatMessage = ({ avatar, name, time, messages, isReplay, isTyping }) => {
         <div className={`single-chat-item mb-5`}>
             <div className={`d-flex align-items-center gap-3 mb-3 ${isReplay ? 'flex-row-reverse' : ''}`}>
                 <a href="#" className="avatar-image">
-                    <img src={avatar} className="img-fluid rounded-circle" alt="avatar" />
+                    <Image src={avatar} width={40} height={40} className="img-fluid rounded-circle" alt={name} />
                 </a>
                 <div className={`d-flex align-items-center gap-2 ${isReplay ? 'flex-row-reverse' : ''}`}>
                     <a href="#">{name}</a>
@@ -52,7 +53,7 @@ export const FileMessage = ({ fileUrl }) => {
             <div key={index} className="mb-3 d-flex align-items-center justify-content-between bg-white border rounded-3">
                 <div className="d-flex align-items-center">
                     <a href="#" className="p-3 d-flex align-items-center border-end wd-70 ht-70">
-                        <img src={iconSrc} className="img-fluid" alt="image" />
+                        <Image src={iconSrc} width={70} height={70} className="img-fluid" alt={fileName} />
                     </a>
                     <div className="d-block ms-3">
                         <a href="#" className="fs-13 fw-700 text-dark d-block">{fileName}</a>
@@ -68,4 +69,3 @@ export const FileMessage = ({ fileUrl }) => {
         ))
     );
 };
-

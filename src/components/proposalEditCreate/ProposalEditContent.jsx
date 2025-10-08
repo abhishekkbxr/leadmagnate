@@ -37,7 +37,7 @@ const ProposalEditContent = () => {
     useEffect(() => {
         setStartDate(new Date())
         setEndDate(addDays(new Date(), 2))
-    }, []);
+    }, [setStartDate, setEndDate]);
 
 
     return (

@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import Image from 'next/image';
 import { FiBellOff, FiEyeOff, FiFlag, FiMoreHorizontal, FiSlash } from 'react-icons/fi';
 import { tasksCommentsData } from '../utils/fackData/tasksListData';
 import Dropdown from './shared/Dropdown';
@@ -64,10 +65,12 @@ const CommentCard = ({ user_img, user_name, like, comments, time, replies }) => 
         <div className="d-flex mb-4">
             <div className="avatar-image me-3">
                 <a href="#">
-                    <img
+                    <Image
                         src={user_img}
+                        width={40}
+                        height={40}
                         className="img-fluid"
-                        alt=""
+                        alt={user_name}
                     />
                 </a>
             </div>

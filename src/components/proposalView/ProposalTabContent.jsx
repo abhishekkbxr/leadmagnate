@@ -221,7 +221,7 @@ const ProposalTabContent = () => {
                 <div className="col-lg-12">
                     <div className="card stretch stretch-full">
                         <div className="card-header">
-                            <h5 className="card-title">FAQ's</h5>
+                            <h5 className="card-title">FAQ&apos;s</h5>
                             <a href="#" className="btn btn-md btn-light-brand">
                                 <FiPlus className='me-2' />
                                 <span>Add New FAQ</span>

@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import Dropdown from '@/components/shared/Dropdown';
 
 const RecentFileCard = ({ imgSrc, title, projectLink, dashboardLink, category, strogeOptions, handleDelete, id }) => {
@@ -7,7 +8,7 @@ const RecentFileCard = ({ imgSrc, title, projectLink, dashboardLink, category, s
             <div className="card mb-4 stretch stretch-full">
                 <div className="card-body p-0 ht-250">
                     <a href="#" className="w-100 h-100 d-flex align-items-center justify-content-center" data-bs-toggle="offcanvas" data-bs-target="#fileFolderDetailsOffcanvas">
-                        <img src={imgSrc} className="img-fluid wd-80 ht-80" alt={title} />
+                        <Image src={imgSrc} width={80} height={80} className="img-fluid" alt={title} />
                     </a>
                 </div>
                 <div className="card-footer p-4 d-flex align-items-center justify-content-between">

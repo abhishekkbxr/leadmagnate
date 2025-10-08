@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { CircularProgressbar } from 'react-circular-progressbar';
 
-const CircleProgress = ({ value, text_first_sym="", text_sym, path_color, path_width="5px"}) => {  
+const CircleProgress = ({ value, text_first_sym="", text_sym, path_color, path_width="5px"}) => {
     const [progressValue, setProgressValue] = useState(0);
     const [percentage, setPercentage] = useState(0);
 
@@ -22,7 +22,7 @@ const CircleProgress = ({ value, text_first_sym="", text_sym, path_color, path_w
             setPercentage(calculatedPercentage.toFixed(2));
         }
 
-    }, [value])
+    }, [value, text_sym])
 
     useEffect(() => {
         const interval = setInterval(() => {

@@ -46,16 +46,18 @@ const TableCell = memo(function TableCell({ options, defaultSelect, onAssign, le
         />
     );
 });
+TableCell.displayName = 'TableCell';
 
 
 const HeaderCheckbox = ({ table }) => {
     const checkboxRef = React.useRef(null);
+    const isSomeRowsSelected = table.getIsSomeRowsSelected();
 
     useEffect(() => {
         if (checkboxRef.current) {
-            checkboxRef.current.indeterminate = table.getIsSomeRowsSelected();
+            checkboxRef.current.indeterminate = isSomeRowsSelected;
         }
-    }, [table.getIsSomeRowsSelected()]);
+    }, [table, isSomeRowsSelected]);
 
     return (
         <input
@@ -67,8 +69,9 @@ const HeaderCheckbox = ({ table }) => {
         />
     );
 };
+HeaderCheckbox.displayName = 'HeaderCheckbox';
 
-const LeadssTable = () => {
+const LeadsTable = () => {
     const { token } = useAuth();
     const { users } = useUsers();
     const { organisations } = useOrganisations();
@@ -343,4 +346,4 @@ const LeadssTable = () => {
     )
 }
 
-export default LeadssTable
+export default LeadsTable

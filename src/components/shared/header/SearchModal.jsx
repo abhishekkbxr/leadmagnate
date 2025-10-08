@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import Image from 'next/image'
 import { FiAirplay, FiChevronRight, FiCommand, FiDownload, FiFilePlus, FiSearch, FiUserPlus } from 'react-icons/fi'
 
 
@@ -101,7 +102,7 @@ const SearchModal = () => {
                 <div className="dropdown-divider mt-0"></div>
                 <div className="search-items-wrapper">
                     <div className="searching-for px-4 py-2">
-                        <p className="fs-11 fw-medium text-muted">I'm searching for...</p>
+                        <p className="fs-11 fw-medium text-muted">I&apos;m searching for...</p>
                         <div className="d-flex flex-wrap gap-1">
                             {
                                 tags.map((tag, index) => <Link href={"#"} key={index} className="flex-fill border rounded py-1 px-2 text-center fs-11 fw-semibold">{tag}</Link>)
@@ -157,7 +158,7 @@ const Card = ({ src, icon, title, subTitle, badge }) => {
                         </div>
                         :
                         <div className="avatar-image bg-gray-200 rounded">
-                            <img src={src} alt="" className="img-fluid" />
+                            <Image src={src} width={40} height={40} alt={title} className="img-fluid" />
                         </div>
                 }
 

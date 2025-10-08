@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import CallingChat from './CallingChat'
 import CallHeader from './CallHeader'
 import CallAction from './CallAction'
@@ -14,7 +15,7 @@ const VoiceCall = () => {
                             {/* <!--! BEGIN: [voice-call-content] !-->  */}
                             <div className="d-flex align-items-center justify-content-center flex-column voice-call-content">
                                 <div className="wd-150 ht-150">
-                                    <img src="/images/avatar/1.png" className="rounded-circle border border-5 img-fluid animation-infinite" alt="image" />
+                                    <Image src="/images/avatar/1.png" width={150} height={150} className="rounded-circle border border-5 img-fluid animation-infinite" alt="Alexandra Della" />
                                 </div>
                                 <div className="my-4 text-center">
                                     <h2 className="fs-13 fw-bold text-dark mb-1">Alexandra Della</h2>

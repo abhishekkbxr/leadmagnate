@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import CategoriesSidebar from './CategoriesSidebar'
 import Link from 'next/link'
 
@@ -28,7 +29,7 @@ const ProjectCard = ({ thumbnail, title, description, name, avatar }) => {
         <div className="col-xl-6">
             <div className="d-lg-flex align-items-center gap-3">
                 <div className="wd-150 rounded-3">
-                    <img src={thumbnail} alt="thumbnail" className="img-fluid rounded-3" />
+                    <Image src={thumbnail} width={150} height={100} alt={title} className="img-fluid rounded-3" />
                 </div>
                 <div className="mt-3 mt-lg-0 ms-lg-3 item-text">
                     <Link href="#">
@@ -37,7 +38,7 @@ const ProjectCard = ({ thumbnail, title, description, name, avatar }) => {
                     <p className="fs-12 fw-normal text-muted mb-0 text-truncate-2-line">{description}</p>
                     <div className="hstack gap-2 mt-3">
                         <div className="avatar-image avatar-sm">
-                            <img src={avatar} alt="avatar" className="img-fluid" />
+                            <Image src={avatar} width={30} height={30} alt={name} className="img-fluid" />
                         </div>
                         <Link href="#" className="fs-12">{name}</Link>
                     </div>

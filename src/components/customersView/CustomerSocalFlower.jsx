@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import { customerProfileOption } from './CustomerSocalMedia'
 import Dropdown from '@/components/shared/Dropdown'
 import { FiUserPlus } from 'react-icons/fi'
@@ -16,7 +17,7 @@ const CustomerSocalFlower = () => {
                     teamMembersList.map(({ id, name, position, thumbnail }) => (
                         <div key={id} className="d-flex align-items-center mb-4">
                             <div className="avatar-image flex-shrink-0 me-3">
-                                <img src={thumbnail} className="img-fluid" alt="" />
+                                <Image src={thumbnail} width={40} height={40} className="img-fluid" alt={name} />
                             </div>
                             <div className="flex-grow-1">
                                 <div>

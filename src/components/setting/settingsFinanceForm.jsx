@@ -60,7 +60,7 @@ const SettingsFinanceForm = () => {
                   selectedOption={selectedOption}
                   onSelectOption={(option) => setSelectedOption(option)}
                 />
-                <small className="form-text text-muted">Thousand Separator [Ex: ./,/'/None/Space]</small>
+                <small className="form-text text-muted">Thousand Separator [Ex: ./,/&apos;/None/Space]</small>
               </div>
               <div className="mb-5">
                 <label className="form-label">Default Tax </label>

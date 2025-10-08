@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import Image from 'next/image'
 import PageHeaderSetting from '@/components/shared/pageHeader/PageHeaderSetting'
 import Footer from '@/components/shared/Footer'
 import TextAreaTopLabel from '@/components/shared/TextAreaTopLabel'
@@ -19,7 +20,7 @@ const SettingGeneralForm = () => {
                         <div className="card-body">
                             <div className="mb-5">
                                 <label htmlFor='img' className="wd-100 ht-100 position-relative overflow-hidden border border-gray-2 rounded d-inline-block" style={{ marginBottom: "-8px" }}>
-                                    <img src={uploadedImage || "/images/logo-abbr.png"} className="upload-pic img-fluid rounded h-100 w-100" alt="img" />
+                                    <Image src={uploadedImage || "/images/logo-abbr.png"} width={100} height={100} className="upload-pic img-fluid rounded h-100 w-100" alt="Company Logo" />
                                     <div className="position-absolute start-50 top-50 end-0 bottom-0 translate-middle h-100 w-100 hstack align-items-center justify-content-center c-pointer upload-button">
                                         <i className="camera-icon" aria-hidden="true" ><FiCamera /></i>
                                     </div>
@@ -85,10 +86,11 @@ const SettingGeneralForm = () => {
                             </div>
                             <TextAreaTopLabel
                                 label={"Information (PDF and HTML)"}
-                                placeholder="{company_name} 
+                                placeholder="{company_name}
 {address}
 {city} {state}
 {country_code} {zip_code}
+{phone}
 {vat_number_with_label}"
                                 info="Company Information Format [Ex: {company_name} {address}, {city}, {state}, {zip_code}, {country_code}, {phone}, {vat_number}, {vat_number_with_label}]"
                             />

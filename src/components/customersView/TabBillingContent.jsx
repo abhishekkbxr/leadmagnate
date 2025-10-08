@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import Image from 'next/image';
 import { FiAlertOctagon, FiCheck, FiEye, FiMoreVertical, FiSend } from 'react-icons/fi';
 
 const TabBillingContent = ({billingHistoryshow}) => {
@@ -188,7 +189,7 @@ const PaymentMethod = ({ isActive, cardType, cardHolder, cardNumber, expiryDate,
         <div className="px-4 py-2 mb-4 d-sm-flex justify-content-between border border-dashed border-gray-3 rounded-1 position-relative">
             <div className="d-sm-flex align-items-center">
                 <div className="wd-100">
-                    <img src={`/images/payment/${cardType}.svg`} className="img-fluid" alt="" />
+                    <Image src={`/images/payment/${cardType}.svg`} width={100} height={60} className="img-fluid" alt={cardType} />
                 </div>
                 <div className="ms-0 ms-sm-3">
                     <div className="text-dark fw-bold mb-2">{cardHolder}</div>
@@ -248,4 +249,3 @@ const BillingHistory = ({ history }) => {
         </div>
     );
 };
-

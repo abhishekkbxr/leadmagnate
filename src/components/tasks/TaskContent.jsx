@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { tasksListData } from '@/utils/fackData/tasksListData';
 import { FiStar } from 'react-icons/fi';
 import Dropdown from '@/components/shared/Dropdown';
@@ -110,8 +111,10 @@ const List = ({ title, priority, taskType, user_img, priorityColor, priorityBgCo
                     </div>
                     <div className="d-md-inline-block d-none me-3">27 Nov, 2023</div>
                     <div className="avatar-image avatar-md d-sm-inline-block d-none">
-                        <img
+                        <Image
                             src={user_img}
+                            width={40}
+                            height={40}
                             alt="user"
                             className="img-fluid"
                         />
@@ -161,7 +164,3 @@ const getStartOfWeekGroup = (taskDate) => {
     startOfWeekGroup.setDate(taskDate.getDate() - dayOffset);
     return startOfWeekGroup;
 };
-
-
-
-

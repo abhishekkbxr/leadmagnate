@@ -51,7 +51,7 @@ const TabSecurity = () => {
             <div className="card mt-5">
                 <div className="card-body">
                     <h6 className="fw-bold">Delete Account</h6>
-                    <p className="fs-11 text-muted">Go to the Data & Privacy section of your profile Account. Scroll to "Your data & privacy options." Delete your Profile Account. Follow the instructions to delete your account:</p>
+                    <p className="fs-11 text-muted">Go to the Data &amp; Privacy section of your profile Account. Scroll to &quot;Your data &amp; privacy options.&quot; Delete your Profile Account. Follow the instructions to delete your account:</p>
                     <div className="my-4 py-2">
                         <input type="password" className="form-control" placeholder="Enter your password" />
                         <div className="mt-3">

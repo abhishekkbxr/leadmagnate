@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { FiMoreHorizontal } from 'react-icons/fi';
 import ImageGroup from '@/components/shared/ImageGroup';
 
@@ -26,7 +27,7 @@ const CardBody = ({ imgSrc, imgAlt, title, fileCount }) => {
         <div className="card-body p-0">
             <a href="#" className="d-flex align-items-center border-bottom p-3" data-bs-toggle="offcanvas" data-bs-target="#fileFolderDetailsOffcanvas">
                 <div className="p-2 avatar-image bg-gray-200 rounded-3">
-                    <img src={imgSrc} alt={imgAlt} className="img-fluid" />
+                    <Image src={imgSrc} width={30} height={30} alt={title} className="img-fluid" />
                 </div>
                 <div className="ms-3">
                     <span className="d-block">{title}</span>
@@ -36,4 +37,3 @@ const CardBody = ({ imgSrc, imgAlt, title, fileCount }) => {
         </div>
     );
 };
-

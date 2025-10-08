@@ -1,5 +1,5 @@
 'use client'
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { useAuth } from './AuthContext';
 import { getOrganisations } from '@/contentApi/organisationApi';
 
@@ -10,7 +10,7 @@ export const OrganisationProvider = ({ children }) => {
     const [organisations, setOrganisations] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const fetchOrganisations = async () => {
+    const fetchOrganisations = useCallback(async () => {
         if (token) {
             try {
                 setLoading(true);
@@ -24,7 +24,7 @@ export const OrganisationProvider = ({ children }) => {
                 setLoading(false);
             }
         }
-    };
+    }, [token]);
 
     const refreshOrganisations = () => {
         fetchOrganisations();
@@ -36,7 +36,7 @@ export const OrganisationProvider = ({ children }) => {
         } else {
             setLoading(false);
         }
-    }, [token]);
+    }, [token, fetchOrganisations]);
 
     return (
         <OrganisationContext.Provider value={{ organisations, loading, refreshOrganisations }}>

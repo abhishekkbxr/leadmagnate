@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { recentDealData } from '@/utils/fackData/recentDealData'
 import CircleProgress from '@/components/shared/CircleProgress'
 import Link from 'next/link'
@@ -20,7 +21,7 @@ const ProjectAssingeMiscellaneous = () => {
                     <Link href="#" className="fw-bold text-truncate-1-line">{deal_name}</Link>
                     <div className="hstack gap-3 mt-3 justify-content-center">
                       <div className="avatar-image avatar-sm">
-                        <img src={dealr_img} alt="" className="img-fluid" />
+                        <Image src={dealr_img} width={30} height={30} alt={dealr_name} className="img-fluid" />
                       </div>
                       <Link href="#">{dealr_name}</Link>
                     </div>

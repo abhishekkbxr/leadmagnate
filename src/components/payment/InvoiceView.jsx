@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import { FiDollarSign, FiDownload, FiEdit, FiFacebook, FiGithub, FiInstagram, FiLinkedin, FiPrinter, FiSend, FiTwitter } from 'react-icons/fi'
 import Dropdown from '@/components/shared/Dropdown'
 
@@ -247,7 +248,7 @@ const InvoiceView = () => {
                             </ul>
                         </div>
                         <div className="text-center">
-                            <img src="/images/general/signature.png" className="img-fluid wd-100" alt="image" />
+                            <Image src="/images/general/signature.png" width={100} height={40} className="img-fluid" alt="Account Manager Signature" />
                             <h6 className="fs-13 fw-bold mt-2">Account Manager</h6>
                             <p className="fs-11 fw-semibold text-muted">26 MAY 2024, 10:35PM</p>
                         </div>

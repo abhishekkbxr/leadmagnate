@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { FiSettings, FiX } from 'react-icons/fi'
 
@@ -93,7 +93,7 @@ const ThemeCustomizer = () => {
     };
 
     // Load saved themes from localStorage on page load
-    const loadSavedThemes = () => {
+    const loadSavedThemes = useCallback(() => {
         const savedNavigationTheme = localStorage.getItem("navigationTheme");
         const savedHeaderTheme = localStorage.getItem("headerTheme");
         const savedSkinTheme = localStorage.getItem("skinTheme");
@@ -111,11 +111,11 @@ const ThemeCustomizer = () => {
         if (savedFontFamily) {
             handleFontFamily(savedFontFamily);
         }
-    };
+    },[]);
 
     useEffect(() => {
         loadSavedThemes()
-    }, [])
+    }, [loadSavedThemes])
 
     return (
         <div className={`theme-customizer ${open ? "theme-customizer-open" : ""}`}>

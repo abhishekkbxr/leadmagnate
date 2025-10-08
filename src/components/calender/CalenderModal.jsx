@@ -16,4 +16,6 @@ const CalenderModal = forwardRef(({ children, onClose, position }, ref) => {
     );
 });
 
+CalenderModal.displayName = 'CalenderModal';
+
 export default CalenderModal;

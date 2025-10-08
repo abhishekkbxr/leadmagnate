@@ -50,7 +50,7 @@ const Customers = ({ title }) => {
                                         <td>
                                             <div className="d-flex align-items-center gap-3">
                                                 <div className="avatar-image">
-                                                    <Image width={38} height={38} sizes='100vw' src={customer.avatar} className="img-fluid" alt="Customer" />
+                                                    <Image width={38} height={38} sizes='100vw' src={customer.avatar} className="img-fluid" alt={customer.name} />
                                                 </div>
                                                 <div>
                                                     <a href="#">{customer.name}</a>
@@ -61,7 +61,7 @@ const Customers = ({ title }) => {
                                         <td>
                                             <div className="hstack gap-2">
                                                 <div className="avatar-image avatar-sm">
-                                                    <img src={customer.flag} className="img-fluid" alt="img" />
+                                                    <Image src={customer.flag} width={20} height={20} className="img-fluid" alt={customer.country} />
                                                 </div>
                                                 <span className="d-inline-block align-middle">{customer.country}</span>
                                             </div>

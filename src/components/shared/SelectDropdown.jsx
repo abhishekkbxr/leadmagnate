@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import getIcon from '@/utils/getIcon';
 
@@ -70,7 +71,7 @@ const SelectDropdown = ({ options, selectedOption, onSelectOption, className, de
                 <span className="selected-label">
                     {localSelectedOption?.color ? <span className="status-dot" style={{ backgroundColor: localSelectedOption?.color }}></span> : ""}
                     {localSelectedOption?.icon ? <span className={`lh-1 fs-16 ${localSelectedOption.iconClassName}`}>{getIcon(localSelectedOption?.icon)} </span> : ""}
-                    {localSelectedOption?.img ? <img src={localSelectedOption.img} className="avatar-image avatar-sm" /> : ""}
+                    {localSelectedOption?.img ? <Image src={localSelectedOption.img} width={20} height={20} alt={localSelectedOption.label} className="avatar-image avatar-sm" /> : ""}
                     {localSelectedOption?.label}
                 </span>
                 <span className="arrow">{isOpen ? <FiChevronUp /> : <FiChevronDown />}</span>
@@ -97,7 +98,7 @@ const SelectDropdown = ({ options, selectedOption, onSelectOption, className, de
                                 >
                                     {option?.color ? <span className="status-dot" style={{ backgroundColor: option?.color }}></span> : ""}
                                     {option?.icon ? <span className={`lh-1 me-3 fs-16 ${option.iconClassName}`}>{getIcon(option?.icon)}</span> : ""}
-                                    {option?.img ? <img src={option.img} className="avatar-image avatar-sm me-2" /> : ""}
+                                    {option?.img ? <Image src={option.img} width={20} height={20} alt={option.label} className="avatar-image avatar-sm me-2" /> : ""}
 
                                     {option?.label}
                                 </li>

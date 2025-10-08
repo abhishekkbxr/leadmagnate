@@ -62,7 +62,7 @@ const LoginForm = ({ registerPath, resetPath }) => {
         <>
             <h2 className="fs-20 fw-bolder mb-4">Login</h2>
             <h4 className="fs-13 fw-bold mb-2">Login to your account</h4>
-            <p className="fs-12 fw-medium text-muted">Thank you for get back <strong>Nelel</strong> web applications, let's access our the best recommendation for you.</p>
+            <p className="fs-12 fw-medium text-muted">Thank you for get back <strong>Nelel</strong> web applications, let&apos;s access our the best recommendation for you.</p>
             <form onSubmit={handleSubmit} className="w-100 mt-4 pt-2">
                 <div className="mb-4">
                     <input type="email" name="email" className="form-control" placeholder="Email" value={formData.email} onChange={handleChange} required />
@@ -100,7 +100,7 @@ const LoginForm = ({ registerPath, resetPath }) => {
                 </div>
             </div>
             <div className="mt-5 text-muted">
-                <span> Don't have an account?</span>
+                <span> Don&apos;t have an account?</span>
                 <Link href={registerPath} className="fw-bold"> Create an Account</Link>
             </div>
         </>

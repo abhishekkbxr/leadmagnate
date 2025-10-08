@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 
 const AuthContext = createContext();
 
@@ -9,6 +9,15 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
+
+    const logout = useCallback(() => {
+        setUser(null);
+        setToken(null);
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        localStorage.removeItem('expiresAt');
+        router.push('/authentication/login/cover');
+    }, [router]);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -24,7 +33,7 @@ export const AuthProvider = ({ children }) => {
             }
         }
         setLoading(false);
-    }, []);
+    }, [logout]);
 
     const login = (userData, authToken, expiresAt) => {
         setUser(userData);
@@ -33,15 +42,6 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('user', JSON.stringify(userData));
         localStorage.setItem('token', authToken);
         localStorage.setItem('expiresAt', expirationTime);
-    };
-
-    const logout = () => {
-        setUser(null);
-        setToken(null);
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-        localStorage.removeItem('expiresAt');
-        router.push('/authentication/login/cover');
     };
 
     const signup = async (name, email, phone, password) => {

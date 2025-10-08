@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import Image from 'next/image'
 
 const MegaMenuApplicationsTab = () => {
     return (
@@ -34,7 +35,7 @@ const MegaMenuApplicationsTab = () => {
                 </div>
                 <div className="col-lg-6">
                     <div className="nxl-mega-menu-image">
-                        <img src="/images/general/full-avatar.png" alt="" className="img-fluid full-user-avtar" />
+                        <Image src="/images/general/full-avatar.png" width={200} height={200} alt="Mega menu user avatar" className="img-fluid full-user-avtar" />
                     </div>
                 </div>
             </div>

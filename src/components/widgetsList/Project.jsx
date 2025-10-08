@@ -1,6 +1,7 @@
 'use client'
 import React, { Fragment } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import CardHeader from '@/components/shared/CardHeader'
 import { projectsData } from '@/utils/fackData/projectsData'
 import CardLoader from '@/components/shared/CardLoader'
@@ -26,7 +27,7 @@ const Project = ({ cardYSpaceClass, borderShow, title }) => {
                                 {borderShow ? <hr className="border-dashed my-3" /> : ""}
                                 <div className={`d-flex ${index === data.length - 1 ? "mb-0" : cardYSpaceClass}`}>
                                     <div className="d-flex w-50 align-items-center me-3">
-                                        <img src={project_logo} alt="sketch-logo" className="me-3" width="35" />
+                                        <Image src={project_logo} alt={project_name} width={35} height={35} className="me-3" />
                                         <div>
                                             <Link href="#" className="text-truncate-1-line">{project_name}</Link>
                                             <div className="fs-11 text-muted">{project_category}</div>

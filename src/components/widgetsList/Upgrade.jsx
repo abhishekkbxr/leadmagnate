@@ -20,7 +20,7 @@ const Upgrade = () => {
                             <Image width={150} height={150} sizes='100vw' src="/images/general/rocket.png" className="img-fluid" alt="img" />
                         </div>
                         <div className="fw-bolder text-uppercase text-dark text-spacing-1">Need more space?</div>
-                        <p className="px-5 fs-12 text-muted text-truncate-2-line">Get more space by upgrading your storage plan today! It's easy to upgrade by click the upgrade button.</p>
+                        <p className="px-5 fs-12 text-muted text-truncate-2-line">Get more space by upgrading your storage plan today! It&apos;s easy to upgrade by click the upgrade button.</p>
                         <a href="#" className="btn btn-primary mt-2 d-inline-block mx-auto">Upgrade Now</a>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import CallingChat from './CallingChat'
 import CallHeader from './CallHeader'
 import CallAction from './CallAction'
@@ -17,7 +18,7 @@ const VideoCall = () => {
                                     <source src="/images/general/video_bg_1.mp4" type="video/mp4" />
                                 </video>
                                 <div className="m-4 border border-5 rounded-3" style={{ zIndex: "1" }}>
-                                    <img src="/images/avatar/10.png" className="img-fluid" alt="Image" />
+                                    <Image src="/images/avatar/10.png" width={150} height={150} className="img-fluid" alt="User video preview" />
                                 </div>
                             </div>
                             <div className="p-4 gap-2 d-flex align-items-center justify-content-center calling-receiver-action">

@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { componentsList } from './itemsList'
 import Link from 'next/link'
 
@@ -29,7 +30,7 @@ const MegaMenuComponentsTab = () => {
                 </div>
                 <div className="col-xl-4">
                     <div className="nxl-mega-menu-image">
-                        <img src="/images/banner/1.jpg" alt="" className="img-fluid" />
+                        <Image src="/images/banner/1.jpg" width={300} height={200} alt="Mega menu components banner" className="img-fluid" />
                     </div>
                     <div className="mt-4">
                         <Link href="mailto:wrapcoders@gmail.com" className="fs-13 fw-bold">View all resources on Duralux &rarr;</Link>

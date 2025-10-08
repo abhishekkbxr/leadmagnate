@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import { FiEdit, FiPlus, FiX } from 'react-icons/fi'
 
 const NotesTabContent = () => {
@@ -63,7 +64,7 @@ const UserCard = ({ avatarSrc, userName, dateTime, description }) => {
                 <div className="card-body d-flex justify-content-between">
                     <div className="d-flex">
                         <a href="#" className="avatar-image me-3">
-                            <img src={avatarSrc} className="img-fluid" alt="" />
+                            <Image src={avatarSrc} width={40} height={40} className="img-fluid" alt={userName} />
                         </a>
                         <div>
                             <div className="mb-2">

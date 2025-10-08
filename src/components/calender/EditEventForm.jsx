@@ -53,7 +53,7 @@ const EditEventForm = ({ event, onSubmit }) => {
 
         handleDate(startDate, setStartDate);
         handleDate(endDate, setEndDate, true); // Add one hour to the end date if time is midnight
-    }, [])
+    }, [event.start, event.end])
 
 
     const handleSubmit = (e) => {

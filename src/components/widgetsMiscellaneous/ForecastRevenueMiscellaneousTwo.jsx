@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import CardHeader from '@/components/shared/CardHeader'
 import { CircularProgressbar } from 'react-circular-progressbar'
@@ -59,7 +60,7 @@ const Card = ({ img, title, description, revenue }) => {
         <div className="d-flex justify-content-between">
             <div className="d-flex align-items-center gap-3">
                 <div className="avatar-text">
-                    <img src={img} alt="img" className="img-fluid" />
+                    <Image src={img} width={30} height={30} alt={title} className="img-fluid" />
                 </div>
                 <div>
                     <a href="#" className="fw-bold">{title}</a>

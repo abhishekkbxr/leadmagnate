@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import { FiMessageCircle, FiX } from 'react-icons/fi'
 
 const CallHeader = () => {
@@ -6,7 +7,7 @@ const CallHeader = () => {
         <div className="d-flex align-items-center justify-content-between px-4 py-3">
             <div className="d-flex align-items-center justify-content-center content-sub-header-left chat-calling-info">
                 <div className="avatar-image me-3">
-                    <img src="/images/avatar/10.png" className="img-fluid" alt="image" />
+                    <Image src="/images/avatar/10.png" width={40} height={40} className="img-fluid" alt="User avatar" />
                 </div>
                 <div>
                     <a href="#" className="fs-13 fw-bold d-flex align-items-center">Erna Serpa</a>

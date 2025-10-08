@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect } from 'react'
+import Image from 'next/image';
 import { FiAlertOctagon, FiArchive, FiClock, FiEdit3, FiEye, FiMoreHorizontal, FiPrinter, FiTrash2 } from 'react-icons/fi'
 import Dropdown from '@/components/shared/Dropdown';
 import { paymentTableData } from '@/utils/fackData/paymentTableData';
@@ -18,30 +19,34 @@ const actions = [
   { label: "Delete", icon: <FiTrash2 />, },
 ];
 
+const HeaderCheckbox = ({ table }) => {
+  const checkboxRef = React.useRef(null);
+  const isSomeRowsSelected = table.getIsSomeRowsSelected();
+
+  useEffect(() => {
+    if (checkboxRef.current) {
+      checkboxRef.current.indeterminate = isSomeRowsSelected;
+    }
+  }, [table, isSomeRowsSelected]);
+
+  return (
+    <input
+      type="checkbox"
+      className="custom-table-checkbox"
+      ref={checkboxRef}
+      checked={table.getIsAllRowsSelected()}
+      onChange={table.getToggleAllRowsSelectedHandler()}
+    />
+  );
+};
+HeaderCheckbox.displayName = 'HeaderCheckbox';
+
 
 const PaymentTable = () => {
   const columns = [
     {
       accessorKey: 'id',
-      header: ({ table }) => {
-        const checkboxRef = React.useRef(null);
-
-        useEffect(() => {
-          if (checkboxRef.current) {
-            checkboxRef.current.indeterminate = table.getIsSomeRowsSelected();
-          }
-        }, [table.getIsSomeRowsSelected()]);
-
-        return (
-          <input
-            type="checkbox"
-            className="custom-table-checkbox"
-            ref={checkboxRef}
-            checked={table.getIsAllRowsSelected()}
-            onChange={table.getToggleAllRowsSelectedHandler()}
-          />
-        );
-      },
+      header: ({ table }) => <HeaderCheckbox table={table} />,
       cell: ({ row }) => (
         <input
           type="checkbox"
@@ -71,7 +76,7 @@ const PaymentTable = () => {
             {
               roles?.img ?
                 <div className="avatar-image avatar-md">
-                  <img src={roles?.img} alt="" className="img-fluid" />
+                  <Image src={roles?.img} width={40} height={40} alt={roles?.name || 'client'} className="img-fluid" />
                 </div>
                 :
                 <div className="text-white avatar-text user-avatar-text avatar-md">{roles?.name.substring(0, 1)}</div>

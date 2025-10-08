@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import { FiActivity, FiCalendar, FiClock, FiCodepen, FiDownload, FiExternalLink, FiGithub, FiGitlab, FiGlobe, FiInstagram, FiLinkedin, FiMail, FiMapPin, FiPhone, FiUser, FiUsers } from 'react-icons/fi'
 import ImageGroup from '@/components/shared/ImageGroup'
 import { imageList } from '../projectsView/TabProjectOverview'
@@ -31,7 +32,7 @@ const ChatProfileInfo = () => {
             </div>
             <div className="offcanvas-body p-0">
                 <div className="p-4 text-center position-relative">
-                    <img src="/images/avatar/1.png" alt="img" className="wd-100 ht-100 rounded-circle border border-5 img-fluid" />
+                    <Image src="/images/avatar/1.png" alt="img" width={100} height={100} className="rounded-circle border border-5 img-fluid" />
                     <h2 className="text-dark fs-13 fw-bold mt-3 mb-0">Alexandra Della
                         <i className="text-success fs-11 ms-1" data-toggle="tooltip" data-bs-trigger="hover" data-title="Verified" ><BsPatchCheck /></i>
                         <i className="text-warning fs-11 ms-1" data-toggle="tooltip" data-bs-trigger="hover" data-title="Feedback" ><BsPatchQuestion /></i>
@@ -112,7 +113,7 @@ const ChatProfileInfo = () => {
                         <div className="me-3">
                             <FiUser size={16} />
                         </div>
-                        <p className="fs-12 text-muted mb-0 text-truncate-2-line">The story is about a weary detective who can"t resist a fight. It takes place in a jungle commonwealth on a world of forbidden magic. The threat of bioterrorism plays a major part in this story.</p>
+                        <p className="fs-12 text-muted mb-0 text-truncate-2-line">The story is about a weary detective who can&apos;t resist a fight. It takes place in a jungle commonwealth on a world of forbidden magic. The threat of bioterrorism plays a major part in this story.</p>
                     </div>
                 </div>
                 {/* / Info */}
@@ -179,7 +180,7 @@ const ChatProfileInfo = () => {
                         {imagePaths.map((imagePath, index) => (
                             <div key={index} className="col-4">
                                 <a href="#" className="d-block px-3 py-2 border rounded">
-                                    <img src={imagePath} className="img-fluid" alt="image" />
+                                    <Image src={imagePath} width={150} height={150} className="img-fluid" alt="image" />
                                 </a>
                             </div>
                         ))}
@@ -231,7 +232,7 @@ const FollowerCard = ({ name, email, img }) => {
                 {
                     img ?
                         <div className="avatar-image me-3">
-                            <img src={img} alt="img" className="img-fluid rounded-circle" />
+                            <Image src={img} width={40} height={40} alt={name} className="img-fluid rounded-circle" />
                         </div>
                         :
                         <div className="avatar-text me-3 bg-info text-white">{name.substring(0, 1)}</div>
@@ -251,7 +252,7 @@ const AttachmentsCard = ({ img, fileName, fileSize, className }) => {
         <div className={`text-dark d-flex align-items-center justify-content-between border rounded-3 ${className}`}>
             <div className="d-flex align-items-center">
                 <a href="#" className="p-3 d-flex align-items-center border-end wd-70 ht-70">
-                    <img src={img} className="img-fluid" alt="image" />
+                    <Image src={img} width={70} height={70} className="img-fluid" alt={fileName} />
                 </a>
                 <div className="d-block ms-3">
                     <a href="#" className="fs-13 fw-bold d-block">{fileName}</a>

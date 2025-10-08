@@ -1,5 +1,6 @@
 
 import React from 'react'
+import Image from 'next/image';
 import HelpBanner from '@/components/helpBanner';
 import { FiArrowRight, FiFileText } from 'react-icons/fi';
 
@@ -157,7 +158,7 @@ const HelpCard = ({ img, title, description }) => {
             <div className="card mb-4 mb-lg-0">
                 <div className="card-body p-5">
                     <div className="wd-50 ht-50 d-flex align-items-center justify-content-center mb-5">
-                        <img src={img} className="img-fluid" alt="img" />
+                        <Image src={img} width={50} height={50} className="img-fluid" alt={title} />
                     </div>
                     <h2 className="fs-16 fw-bold mb-3">{title}</h2>
                     <p className="fs-12 fw-medium text-muted text-truncate-3-line">{description}</p>
@@ -173,7 +174,7 @@ const CategoryCard = ({ title, icon, topics, moreTopicsLink, totalTopic }) => {
         <div className="card p-4 mb-4">
             <div className="d-sm-flex align-items-center">
                 <div className="wd-50 ht-50 p-2 d-flex align-items-center justify-content-center border rounded-3">
-                    <img src={icon} className="img-fluid" alt="img" />
+                    <Image src={icon} width={50} height={50} className="img-fluid" alt={title} />
                 </div>
                 <div className="ms-0 ms-sm-3 mt-4 mt-sm-0">
                     <h2 className="fs-14 fw-bold mb-1">{title}</h2>
@@ -206,7 +207,8 @@ export const TrandingCard = ({ title}) => {
                     </div>
                     <a href="#" className="text-truncate-1-line" data-bs-toggle="offcanvas" data-bs-target="#topicsDetailsOffcanvas">{title}</a>
                 </div>
-                <a href="#" className="avatar-text avatar-sm me-3" data-bs-toggle="offcanvas" data-bs-target="#topicsDetailsOffcanvas">
+                <a href="#" className="avatar-text avatar-sm me-3" data-bs-toggle="offcanvas"
+                 data-bs-target="#topicsDetailsOffcanvas">
                     <FiArrowRight />
                 </a>
             </div>
@@ -220,7 +222,7 @@ function QuestionCard({ title, icon, link, description }) {
             <div className="card card-body pb-0 pb-lg-4 text-center">
                 <a href={link} className="card stretch stretch-full p-5 mb-4 mb-lg-0 d-flex flex-column flex-fill align-items-center justify-content-center border rounded-3">
                     <div className="mb-4 wd-50 ht-50">
-                        <img src={icon} className="img-fluid" alt={title} />
+                        <Image src={icon} width={50} height={50} className="img-fluid" alt={title} />
                     </div>
                     <div className="fs-14 fw-bold d-block mb-1">{title}</div>
                     {description && <div className="fs-12 fw-medium text-muted text-truncate-1-line">{description}</div>}

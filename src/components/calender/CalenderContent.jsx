@@ -117,11 +117,11 @@ const CalenderContent = () => {
         dispatch({ type: 'SET_SELECTED_CATEGORIES', payload: updatedCategories });
     };
 
-    // Check if all categories are true on initial load
+    // Update the "Select All" checkbox state when individual categories change
     useEffect(() => {
         const allSelected = Object.values(state.selectedCategories).every((value) => value);
         dispatch({ type: 'SET_SELECT_ALL', payload: allSelected });
-    }, []);
+    }, [state.selectedCategories]);
 
     // Filter events based on selected categories
     const filteredEvents = state.events.filter((event) => state.selectedCategories[event.category]);

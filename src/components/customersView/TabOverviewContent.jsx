@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import { FiAlertTriangle } from 'react-icons/fi'
 import { projectsData } from '@/utils/fackData/projectsData'
 import ImageGroup from '@/components/shared/ImageGroup'
@@ -108,10 +109,12 @@ const TabOverviewContent = () => {
                                     <div className="p-4">
                                         <div className="d-sm-flex align-items-center">
                                             <div className="wd-50 ht-50 p-2 bg-gray-200 rounded-2">
-                                                <img
+                                                <Image
                                                     src={project_logo}
+                                                    width={50}
+                                                    height={50}
                                                     className="img-fluid"
-                                                    alt=""
+                                                    alt={project_name}
                                                 />
                                             </div>
                                             <div className="ms-0 mt-4 ms-sm-3 mt-sm-0">

@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { authenticationTabSlider } from './itemsList'
 
 const MegaMenuSlider = () => {
@@ -18,7 +19,7 @@ const MegaMenuSlider = () => {
                         return (
                             <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`}>
                                 <div className="nxl-mega-menu-image">
-                                    <img src={src} alt="" className="img-fluid d-block w-100" />
+                                    <Image src={src} width={300} height={200} alt={title} className="img-fluid d-block w-100" />
                                 </div>
                                 <div className="carousel-caption">
                                     <h5 className="carousel-caption-title text-truncate-1-line">{title}</h5>

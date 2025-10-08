@@ -1,5 +1,5 @@
-
 import React from 'react';
+import Image from 'next/image';
 import { FiRepeat, FiStar } from 'react-icons/fi';
 import { Tooltip } from 'react-tooltip';
 
@@ -28,7 +28,7 @@ const AccordionItem = ({
                 >
                     <div className="d-flex align-items-center">
                         <div className="avatar-image avatar-md">
-                            <img src={avatarSrc} alt="Avatar" className="img-fluid" />
+                            <Image src={avatarSrc} width={40} height={40} alt={name} className="img-fluid" />
                         </div>
                         <div className="ms-3">
                             <h2 className="fs-13 mb-1 text-truncate-1-line">{name}</h2>

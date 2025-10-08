@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import { FiAlignLeft, FiBellOff, FiInfo, FiPhoneCall, FiPlus, FiSlash, FiStar, FiTrash2, FiUserPlus, FiVideo } from 'react-icons/fi'
 import Dropdown from '@/components/shared/Dropdown'
 import topTost from '@/utils/topTost';
@@ -29,7 +30,7 @@ const ChatHeader = ({setSidebarOpen}) => {
                     </Link>
                     <Link href="#" className="d-flex align-items-center justify-content-center gap-3" data-bs-toggle="offcanvas" data-bs-target="#userProfileDetails">
                         <div className="avatar-image">
-                            <img src="/images/avatar/1.png" className="img-fluid" alt="image" />
+                            <Image src="/images/avatar/1.png" width={40} height={40} className="img-fluid" alt="User avatar" />
                         </div>
                         <div className="d-none d-sm-block">
                             <div className="fw-bold d-flex align-items-center">Alexandra Della</div>

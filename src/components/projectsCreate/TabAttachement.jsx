@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import Dropdown from '@/components/shared/Dropdown'
 import { strogeOptions } from '../storage/StorageContent'
 
@@ -66,7 +67,7 @@ const AttachementCard = ({ title, category1, category2, category3, iconSrc }) =>
             <div className="card stretch stretch-full">
                 <div className="card-body p-0 ht-200 position-relative">
                     <a href="#" className="w-100 h-100 d-flex align-items-center justify-content-center">
-                        <img src={iconSrc} className="img-fluid wd-80 ht-80" alt="img" />
+                        <Image src={iconSrc} width={80} height={80} className="img-fluid" alt={title} />
                     </a>
                     <Dropdown dropdownItems={strogeOptions} dataBsToggle='offcanvas' dropdownParentStyle={"position-absolute top-15 right-15"}/>
                 </div>

@@ -50,7 +50,7 @@ const ResetForm = ({ path }) => {
                 </div>
             </form>
             <div className="mt-5 text-muted">
-                <span> Don't have an account?</span>
+                <span> Don&apos;t have an account?</span>
                 <Link href={path} className="fw-bold"> Create an Account</Link>
             </div>
         </>

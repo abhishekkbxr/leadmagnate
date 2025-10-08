@@ -78,42 +78,118 @@ const SupportDetails = () => {
                         </ul>
                     </div>
                     <div className="mb-5">
-                        <pre><code className="language-html">{"\t"}{"\t"}{"\t"}{"\t"}{"\t"}{"\n"}&lt;!DOCTYPE html&gt;{"\n"}&lt;html lang="zxx"&gt;{"\n"}&lt;head&gt;{"\n"}{"    "}&lt;meta charset="utf-8"&gt;{"\n"}{"    "}&lt;meta http-equiv="x-ua-compatible" content="IE=edge"&gt;{"\n"}{"    "}&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;{"\n"}{"    "}&lt;meta name="description" content=""&gt;{"\n"}{"    "}&lt;meta name="keyword" content=""&gt;{"\n"}{"    "}&lt;meta name="author" content="WRAPCODERS"&gt;{"\n"}{"    "}&lt;!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !--&gt;{"\n"}{"    "}&lt;!--! BEGIN: Apps Title--&gt;{"\n"}{"    "}&lt;title&gt;Help Center&lt;/title&gt;{"\n"}{"    "}&lt;!--! END:{"  "}Apps Title--&gt;{"\n"}{"    "}&lt;!--! BEGIN: Favicon--&gt;{"\n"}{"    "}&lt;link type="image/x-icon" rel="shortcut icon" href=".assets/images/favicon.ico"&gt;{"\n"}{"    "}&lt;!--! END: Favicon--&gt;{"\n"}{"    "}&lt;!--! BEGIN: Bootstrap CSS--&gt;{"\n"}{"    "}&lt;link type="text/css" rel="stylesheet" href=".assets/css/bootstrap.min.css"&gt;{"\n"}{"    "}&lt;!--! END: Bootstrap CSS--&gt;{"\n"}{"    "}&lt;!--! BEGIN: Vendors CSS--&gt;{"\n"}{"    "}&lt;link type="text/css" rel="stylesheet" href=".assets/vendors/css/vendors.min.css"&gt;{"\n"}{"    "}&lt;!--! END: Vendors CSS--&gt;{"\n"}{"    "}&lt;!--! BEGIN: Custom CSS--&gt;{"\n"}{"    "}&lt;link type="text/css" rel="stylesheet" href=".assets/css/theme.min.css"&gt;{"\n"}{"    "}&lt;!--! END: Custom CSS--&gt;{"\n"}{"    "}&lt;!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !--&gt;{"\n"}{"    "}&lt;!--! WARNING: Respond.js doesn"t work if you view the page via file: !--&gt;{"\n"}{"    "}&lt;!--[if lt IE 9]&gt;{"\n"}{"        "}&lt;script src="https:oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"&gt;&lt;/script&gt;{"\n"}{"        "}&lt;script src="https:oss.maxcdn.com/respond/1.4.2/respond.min.js"&gt;&lt;/script&gt;{"\n"}{"    "}&lt;![endif]--&gt;{"\n"}&lt;/head&gt;{"\n"}&lt;/html&gt;{"\n"}{"                            "}</code>{"\n"}{"                            "}</pre>
+                        <pre><code className="language-html">{`
+<!DOCTYPE html>
+<html lang=&quot;zxx&quot;>
+<head>
+    <meta charset=&quot;utf-8&quot;>
+    <meta http-equiv=&quot;x-ua-compatible&quot; content=&quot;IE=edge&quot;>
+    <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;>
+    <meta name=&quot;description&quot; content=&quot;&quot;>
+    <meta name=&quot;keyword&quot; content=&quot;&quot;>
+    <meta name=&quot;author&quot; content=&quot;WRAPCODERS&quot;>
+    {/* <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !--> */}
+    {/* <!--! BEGIN: Apps Title--> */}
+    <title>Help Center</title>
+    {/* <!--! END:  Apps Title--> */}
+    {/* <!--! BEGIN: Favicon--> */}
+    <link type=&quot;image/x-icon&quot; rel=&quot;shortcut icon&quot; href=&quot;.assets/images/favicon.ico&quot;>
+    {/* <!--! END: Favicon--> */}
+    {/* <!--! BEGIN: Bootstrap CSS--> */}
+    <link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;.assets/css/bootstrap.min.css&quot;>
+    {/* <!--! END: Bootstrap CSS--> */}
+    {/* <!--! BEGIN: Vendors CSS--> */}
+    <link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;.assets/vendors/css/vendors.min.css&quot;>
+    {/* <!--! END: Vendors CSS--> */}
+    {/* <!--! BEGIN: Custom CSS--> */}
+    <link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;.assets/css/theme.min.css&quot;>
+    {/* <!--! END: Custom CSS--> */}
+    {/* <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !--> */}
+    {/* <!--! WARNING: Respond.js doesn&apos;t work if you view the page via file: !--> */}
+    {/* <!--[if lt IE 9]>
+        <script src=&quot;https:oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js&quot;></script>
+        <script src=&quot;https:oss.maxcdn.com/respond/1.4.2/respond.min.js&quot;></script>
+    <![endif]--> */}
+</head>
+</html>
+                        `}</code></pre>
                     </div>
                     <h4 className="fs-13">👋 Threds</h4>
                     <p className="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis minus omnis veniam cupiditate molestiae itaque hic quibusdam fuga modi quam cumque recusandae harum nulla vero, tempore possimus aliquid animi!</p>
                     <div className="mb-5">
-                        <pre><code className="language-js">{"\n"}{"                                "}const Prism = require('prismjs');{"\n"}{"\n"}{"                                "}// The code snippet you want to highlight, as a string{"\n"}{"                                "}const code = `var data = 1;`;{"\n"}{"\n"}{"                                "}// Returns a highlighted HTML string{"\n"}{"                                "}const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');{"\n"}{"                            "}</code></pre>
+                        <pre><code className="language-js">{`
+                                const Prism = require('prismjs');
+                                // The code snippet you want to highlight, as a string
+                                const code = 'var data = 1;';
+                                // Returns a highlighted HTML string
+                                const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+                            `}</code></pre>
                     </div>
                     <h4 className="fs-13">📌 Inbox</h4>
                     <p className="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis minus omnis veniam cupiditate molestiae itaque hic quibusdam fuga modi quam cumque recusandae harum nulla vero, tempore possimus aliquid animi!</p>
                     <div className="mb-5">
-                        <pre><code className="language-js">{"\n"}{"                                "}const Prism = require('prismjs');{"\n"}{"\n"}{"                                "}// The code snippet you want to highlight, as a string{"\n"}{"                                "}const code = `var data = 1;`;{"\n"}{"\n"}{"                                "}// Returns a highlighted HTML string{"\n"}{"                                "}const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');{"\n"}{"                            "}</code></pre>
+                        <pre><code className="language-js">{`
+                                const Prism = require('prismjs');
+                                // The code snippet you want to highlight, as a string
+                                const code = 'var data = 1;';
+                                // Returns a highlighted HTML string
+                                const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+                            `}</code></pre>
                     </div>
                     <h4 className="fs-13">👙 Bundles</h4>
                     <p className="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis minus omnis veniam cupiditate molestiae itaque hic quibusdam fuga modi quam cumque recusandae harum nulla vero, tempore possimus aliquid animi!</p>
                     <div className="mb-5">
-                        <pre><code className="language-js">{"\n"}{"                                "}const Prism = require('prismjs');{"\n"}{"\n"}{"                                "}// The code snippet you want to highlight, as a string{"\n"}{"                                "}const code = `var data = 1;`;{"\n"}{"\n"}{"                                "}// Returns a highlighted HTML string{"\n"}{"                                "}const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');{"\n"}{"                            "}</code></pre>
+                        <pre><code className="language-js">{`
+                                const Prism = require('prismjs');
+                                // The code snippet you want to highlight, as a string
+                                const code = 'var data = 1;';
+                                // Returns a highlighted HTML string
+                                const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+                            `}</code></pre>
                     </div>
                     <h4 className="fs-13">⌚ Snoozen</h4>
                     <p className="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis minus omnis veniam cupiditate molestiae itaque hic quibusdam fuga modi quam cumque recusandae harum nulla vero, tempore possimus aliquid animi!</p>
                     <div className="mb-5">
-                        <pre><code className="language-js">{"\n"}{"                                "}const Prism = require('prismjs');{"\n"}{"\n"}{"                                "}// The code snippet you want to highlight, as a string{"\n"}{"                                "}const code = `var data = 1;`;{"\n"}{"\n"}{"                                "}// Returns a highlighted HTML string{"\n"}{"                                "}const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');{"\n"}{"                            "}</code></pre>
+                        <pre><code className="language-js">{`
+                                const Prism = require('prismjs');
+                                // The code snippet you want to highlight, as a string
+                                const code = 'var data = 1;';
+                                // Returns a highlighted HTML string
+                                const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+                            `}</code></pre>
                     </div>
                     <h4 className="fs-13">🎂 Groups</h4>
                     <p className="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis minus omnis veniam cupiditate molestiae itaque hic quibusdam fuga modi quam cumque recusandae harum nulla vero, tempore possimus aliquid animi!</p>
                     <div className="mb-5">
-                        <pre><code className="language-js">{"\n"}{"                                "}const Prism = require('prismjs');{"\n"}{"\n"}{"                                "}// The code snippet you want to highlight, as a string{"\n"}{"                                "}const code = `var data = 1;`;{"\n"}{"\n"}{"                                "}// Returns a highlighted HTML string{"\n"}{"                                "}const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');{"\n"}{"                            "}</code></pre>
+                        <pre><code className="language-js">{`
+                                const Prism = require('prismjs');
+                                // The code snippet you want to highlight, as a string
+                                const code = 'var data = 1;';
+                                // Returns a highlighted HTML string
+                                const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+                            `}</code></pre>
                     </div>
                     <h4 className="fs-13">😳 Channel</h4>
                     <p className="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis minus omnis veniam cupiditate molestiae itaque hic quibusdam fuga modi quam cumque recusandae harum nulla vero, tempore possimus aliquid animi!</p>
                     <div className="mb-5">
-                        <pre><code className="language-js">{"\n"}{"                                "}const Prism = require('prismjs');{"\n"}{"\n"}{"                                "}// The code snippet you want to highlight, as a string{"\n"}{"                                "}const code = `var data = 1;`;{"\n"}{"\n"}{"                                "}// Returns a highlighted HTML string{"\n"}{"                                "}const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');{"\n"}{"                            "}</code></pre>
+                        <pre><code className="language-js">{`
+                                const Prism = require('prismjs');
+                                // The code snippet you want to highlight, as a string
+                                const code = 'var data = 1;';
+                                // Returns a highlighted HTML string
+                                const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+                            `}</code></pre>
                     </div>
                     <h4 className="fs-13">🎉 Favorite</h4>
                     <p className="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis minus omnis veniam cupiditate molestiae itaque hic quibusdam fuga modi quam cumque recusandae harum nulla vero, tempore possimus aliquid animi!</p>
                     <div>
-                        <pre><code className="language-js">{"\n"}{"                                "}const Prism = require('prismjs');{"\n"}{"\n"}{"                                "}// The code snippet you want to highlight, as a string{"\n"}{"                                "}const code = `var data = 1;`;{"\n"}{"\n"}{"                                "}// Returns a highlighted HTML string{"\n"}{"                                "}const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');{"\n"}{"                            "}</code></pre>
+                        <pre><code className="language-js">{`
+                                const Prism = require('prismjs');
+                                // The code snippet you want to highlight, as a string
+                                const code = 'var data = 1;';
+                                // Returns a highlighted HTML string
+                                const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+                            `}</code></pre>
                     </div>
                     <hr className="my-5" />
                     <p className="text-muted">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda consectetur illo at placeat cum nulla repellat expedita nostrum praesentium blanditiis repudiandae commodi tempore debitis odio, doloremque magni eaque soluta cupiditate ullam harum, necessitatibus sunt voluptas eum laboriosam. Consequatur nobis fuga fugiat deleniti veritatis sint, suscipit magni tempora labore. Neque, eaque?</p>
@@ -130,7 +206,7 @@ const SupportDetails = () => {
                         <h2 className="fs-16 mb-2">Having trouble logging in?</h2>
                         <p className="text-muted">Explore some common issues or solutions or get in tuch with us.</p>
                         <div className="d-flex justify-content-center gap-2">
-                            <a href="#" className="btn btn-sm btn-success">Read FAQ's</a>
+                            <a href="#" className="btn btn-sm btn-success">Read FAQ&apos;s</a>
                             <a href="#" className="btn btn-sm btn-danger">Contact Support</a>
                         </div>
                     </div>

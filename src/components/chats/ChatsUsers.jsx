@@ -1,5 +1,6 @@
 'use client'
 import React, { Fragment, useState } from 'react'
+import Image from 'next/image';
 import { userList } from '@/utils/fackData/userList'
 import { FiX } from 'react-icons/fi'
 import Dropdown from '@/components/shared/Dropdown'
@@ -80,10 +81,12 @@ const ChatsUsers = ({ sidebarOpen, setSidebarOpen }) => {
                     {
                       user_img ?
                         <div className="avatar-image">
-                          <img
+                          <Image
                             src={user_img}
+                            width={40}
+                            height={40}
                             className="img-fluid"
-                            alt="image"
+                            alt={user_name}
                           />
                         </div>
                         :

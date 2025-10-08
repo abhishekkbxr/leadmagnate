@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import { FiCornerUpRight, FiEye, FiFastForward, FiLink2, FiMoreVertical, FiRepeat, FiStar, FiX } from 'react-icons/fi'
 import { confirmDelete } from '@/utils/confirmDelete';
 
@@ -43,7 +44,7 @@ const EmailList = ({ id, user_img, user_name, subject, labels, date, selectedIte
                     {
                         user_img ?
                             <div className="avatar-image avatar-md">
-                                <img src={user_img} alt="" className="img-fluid" />
+                                <Image src={user_img} width={40} height={40} alt={user_name} className="img-fluid" />
                             </div>
                             :
                             <div className="text-white avatar-text user-avatar-text avatar-md">{user_name.substring(0, 1)}</div>

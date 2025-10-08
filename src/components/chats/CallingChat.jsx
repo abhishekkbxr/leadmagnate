@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import { FiAlertTriangle, FiEyeOff, FiTrash2 } from 'react-icons/fi'
 import Dropdown from '@/components/shared/Dropdown'
 import { chatMessageData } from '@/utils/fackData/chatMessageData'
@@ -26,7 +27,7 @@ const CallingChat = () => {
                                     <div className="w-100 d-flex align-items-start justify-content-between">
                                         <div className="d-flex align-items-start">
                                             <div className="avatar-image me-3">
-                                                <img src={user_img} className="img-fluid" alt="image" />
+                                                <Image src={user_img} width={40} height={40} className="img-fluid" alt={user_name} />
                                             </div>
                                             <div>
                                                 <a href="#" className="fs-13 fw-bold d-flex align-items-center mb-1">{user_name}</a>

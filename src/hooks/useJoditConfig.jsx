@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
+
+const options = ['font', 'fontsize', 'bold', 'italic', 'underline', 'link', 'ul', 'ol', 'align'];
 
 const useJoditConfig = () => {
-    const options = ['font', 'fontsize', 'bold', 'italic', 'underline', 'link', 'ul', 'ol', 'align'];
     const config = useMemo(
         () => ({
             readonly: false,

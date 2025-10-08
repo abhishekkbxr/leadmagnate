@@ -1,6 +1,7 @@
 'use client'
 import React, { Fragment } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import dynamic from 'next/dynamic';
 import { estimateAreaChartOptions } from '@/utils/chartsLogic/estimateAreaChartOptions'
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
@@ -36,7 +37,7 @@ const SalesMiscellaneous = ({ isFooterShow, dataList }) => {
                                 <div className="d-flex align-items-center justify-content-between">
                                     <div className="hstack gap-3">
                                         <div className="avatar-image avatar-lg rounded">
-                                            <img className="img-fluid" src={image} alt="img" />
+                                            <Image className="img-fluid" src={image} width={40} height={40} alt={name} />
                                         </div>
                                         <div>
                                             <Link href="#" className="d-block">{name}</Link>

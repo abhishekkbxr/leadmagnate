@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { FiFileText, FiImage, FiLayers, FiMonitor, FiMusic, FiVideo } from 'react-icons/fi';
 
 const StorageDetails = () => {
@@ -23,10 +24,12 @@ const StorageDetails = () => {
                 <div className="tab-content">
                     <div className="tab-pane fade active show" id="fileDetailsTab">
                         <div className="p-4 d-flex align-items-center justify-content-center">
-                            <img
+                            <Image
                                 src="/images/storage-icons/undefined.png"
-                                className="img-fluid wd-200"
-                                alt=""
+                                width={200}
+                                height={200}
+                                className="img-fluid"
+                                alt="Storage details icon"
                             />
                         </div>
                         <div className="drive-specifications">
@@ -227,7 +230,7 @@ const Comment = ({ avatarSrc, avatarText, name, date, content }) => {
         <div className="mb-4 d-flex align-items-start">
             {avatarSrc ? (
                 <div className="me-3 avatar-image">
-                    <img src={avatarSrc} className="rounded-circle img-fluid" alt="avatar" />
+                    <Image src={avatarSrc} width={40} height={40} className="rounded-circle img-fluid" alt={name} />
                 </div>
             ) : (
                 <div className="me-3 bg-warning text-white avatar-text">{avatarText}</div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { appsList } from './itemsList'
 import Link from 'next/link'
 
@@ -25,7 +26,7 @@ const MegaMenuIntegrationsTab = () => {
                                         return (
                                             <Link key={app_name} href="#" className="dropdown-item">
                                                 <div className="menu-item-icon">
-                                                    <img src={icon} alt="img" className="img-fluid" />
+                                                    <Image src={icon} width={30} height={30} alt={app_name} className="img-fluid" />
                                                 </div>
                                                 <div className="menu-item-title">{app_name}</div>
                                                 <div className="menu-item-arrow">

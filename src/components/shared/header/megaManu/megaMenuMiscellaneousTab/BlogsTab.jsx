@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import TabFooter from './TabFooter'
 import CategoriesSidebar from './CategoriesSidebar'
 
@@ -31,7 +32,7 @@ const BlogCard = ({ thumbnail, title, description, date }) => {
         <div className="col-xxl-4 col-lg-6">
             <div className="d-flex align-items-center gap-3">
                 <div className="wd-100 rounded-3">
-                    <img src={thumbnail} alt="thumbnail" className="img-fluid rounded-3 border border-3" />
+                    <Image src={thumbnail} width={100} height={100} alt={title} className="img-fluid rounded-3 border border-3" />
                 </div>
                 <div>
                     <a href="#">

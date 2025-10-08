@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import Image from 'next/image'
 import { FiBell, FiCheck, FiX } from 'react-icons/fi'
 
 const notificationsList = [
@@ -59,7 +60,7 @@ export default NotificationsModal
 const Card = ({ src, time, titleFirst, titleSecond }) => {
     return (
         <div className="notifications-item">
-            <img src={src} alt="" className="rounded me-3 border" />
+            <Image src={src} width={40} height={40} alt={titleFirst} className="rounded me-3 border" />
             <div className="notifications-desc">
                 <Link href="#" className="font-body text-truncate-2-line"> <span className="fw-semibold text-dark">{titleFirst}</span> {titleSecond}</Link>
                 <div className="d-flex justify-content-between align-items-center">

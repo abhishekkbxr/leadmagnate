@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import getIcon from '@/utils/getIcon';
 
 const generalInfoData = [
@@ -166,7 +167,7 @@ const GeneralCard = ({ title, icon, text, image }) => {
                     )}
                     {image && (
                         <div className="avatar-image avatar-sm">
-                            <img src={image} alt="" className="img-fluid" />
+                            <Image src={image} width={20} height={20} alt={text} className="img-fluid" />
                         </div>
                     )}
                     <span>{text}</span>

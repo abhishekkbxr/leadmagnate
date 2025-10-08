@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Image from 'next/image';
 import { projectRoalOptions } from '@/utils/options'
 import { userList } from '@/utils/fackData/userList'
 import SelectDropdown from '@/components/shared/SelectDropdown'
@@ -55,10 +56,12 @@ const Card = ({ index, img, name, email, roles }) => {
                 {
                     img ?
                         <div className="avatar-image  d-none d-sm-block">
-                            <img
+                            <Image
                                 src={img}
+                                width={40}
+                                height={40}
                                 className="img-fluid"
-                                alt="image"
+                                alt={name}
                             />
                         </div>
                         :

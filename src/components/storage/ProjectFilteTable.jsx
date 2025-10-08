@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { FiEye, FiScissors, FiShare2, FiX } from 'react-icons/fi'
 import ImageGroup from '@/components/shared/ImageGroup'
 import Dropdown from '@/components/shared/Dropdown'
@@ -66,7 +67,7 @@ const TableRow = ({ fileSIze, iconSrc, title, uploadDate, members, handleDelete,
         <tr>
             <td>
                 <div className="d-flex align-items-center gap-3">
-                    <img src={iconSrc} className="img-fluid rounded wd-30" alt="" />
+                    <Image src={iconSrc} width={30} height={30} className="img-fluid rounded" alt={title} />
                     <Link href="#">{title}</Link>
                 </div>
             </td>

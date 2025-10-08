@@ -1,5 +1,6 @@
 'use client'
 import React, { Fragment } from 'react'
+import Image from 'next/image'
 import CardHeader from '@/components/shared/CardHeader'
 import useCardTitleActions from '@/hooks/useCardTitleActions'
 import CardLoader from '@/components/shared/CardLoader'
@@ -41,7 +42,7 @@ const TopCountryChart = () => {
                             <div className="hstack justify-content-between">
                                 <div className="hstack">
                                     <div className="me-3" >
-                                        <img src={flag} alt='img' className='w-full rounded-0' style={{ height: "15px", width: "20px" }} />
+                                        <Image src={flag} width={20} height={15} alt={country} className='w-full rounded-0' />
                                     </div>
                                     <a href="#">
                                         <span>{country}</span>

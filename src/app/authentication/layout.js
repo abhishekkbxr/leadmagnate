@@ -3,7 +3,7 @@ import useBootstrapUtils from '@/hooks/useBootstrapUtils'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
-const layout = ({ children }) => {
+const Layout = ({ children }) => {
     const pathName = usePathname()
     useBootstrapUtils(pathName)
 
@@ -14,4 +14,4 @@ const layout = ({ children }) => {
     )
 }
 
-export default layout
+export default Layout

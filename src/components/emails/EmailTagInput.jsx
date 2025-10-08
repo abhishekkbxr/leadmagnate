@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { emailList } from '@/utils/fackData/emailList';
 
 
@@ -78,7 +79,7 @@ const EmailTagInput = ({ placeholder, className }) => {
                         <span key={id} className="tag chat-single-item">
                             {
                                 user_img ?
-                                    <img src={user_img} alt="" className="img-fluid" />
+                                    <Image src={user_img} width={20} height={20} alt={user_name} className="img-fluid" />
                                     :
                                     <div className="text-white user-avatar-text">{user_name.substring(0, 1)}</div>
                             }
@@ -110,7 +111,7 @@ const EmailTagInput = ({ placeholder, className }) => {
                                 {
                                     user_img ?
                                         <div className="avatar-image avatar">
-                                            <img src={user_img} alt="img" className="img-fluid" />
+                                            <Image src={user_img} width={40} height={40} alt={user_name} className="img-fluid" />
                                         </div>
                                         :
                                         <div className="text-white avatar-text user-avatar-text avatar">{user_name.substring(0, 1)}</div>

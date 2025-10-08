@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import { developementConnectionsData } from '@/utils/fackData/developementConnectionsData';
 import { socialConnectionsData } from '@/utils/fackData/socialConnectionsData';
 
@@ -50,7 +51,7 @@ const Card = ({ imgSrc, title, description, isChecked }) => {
         <div className="hstack justify-content-between p-4 mb-3 border border-dashed border-gray-3 rounded-1">
             <div className="hstack me-4">
                 <div className="wd-40">
-                    <img src={imgSrc} className="img-fluid" alt="" />
+                    <Image src={imgSrc} width={40} height={40} className="img-fluid" alt={title} />
                 </div>
                 <div className="ms-4">
                     <a href="#" className="fw-bold mb-1 text-truncate-1-line">{title}</a>
@@ -69,4 +70,3 @@ const Card = ({ imgSrc, title, description, isChecked }) => {
         </div>
     );
 };
-

@@ -30,7 +30,7 @@ const NotesSidebar = ({ setSelectTab, selectTab, sidebarOpen, setSidebarOpen }) 
                     <ul className="nav d-flex flex-column nxl-content-sidebar-item">
                         {
                             filteredCategory.map((category) => (
-                                <li className="nav-item">
+                                <li key={category} className="nav-item">
                                     <a
                                         href="#"
                                         className={`nav-link note-link text-capitalize ${selectTab === category ? "active" : ""} `}

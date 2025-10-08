@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import Dropdown from '@/components/shared/Dropdown';
 import HorizontalProgress from '@/components/shared/HorizontalProgress';
 import { FiClock } from 'react-icons/fi';
@@ -11,7 +12,7 @@ const CloudStorageCard = ({id, iconSrc, name, used, total, strogeOptions, lastAc
                 <div className="d-flex align-items-center justify-content-between storage-icon-name">
                     <div className="d-flex align-items-center">
                         <div className="p-2 avatar-image bg-gray-200 rounded-3">
-                            <img src={iconSrc} className="img-fluid" alt="" />
+                            <Image src={iconSrc} width={30} height={30} className="img-fluid" alt={name} />
                         </div>
                         <div className="d-block ms-3">
                             <a

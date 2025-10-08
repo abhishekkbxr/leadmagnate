@@ -13,7 +13,7 @@ const NavigationManu = () => {
     const pathName = usePathname()
     useEffect(() => {
         setNavigationOpen(false)
-    }, [pathName])
+    }, [pathName, setNavigationOpen])
     return (
         <nav className={`nxl-navigation ${navigationOpen ? "mob-navigation-active" : ""}`}>
             <div className="navbar-wrapper">

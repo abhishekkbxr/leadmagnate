@@ -16,7 +16,7 @@ const TabProjectTarget = () => {
         setValue(`
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores beatae inventore reiciendis ipsum natus, porro recusandae sunt accusantium reprehenderit aliquid commodi est veniam sit molestiae, nesciunt cupiditate. Laborum, culpa maxime.
             `)
-    }, [])
+    }, [setStartDate])
     return (
         <section className="step-body mt-4 body current">
             <form id="project-target">

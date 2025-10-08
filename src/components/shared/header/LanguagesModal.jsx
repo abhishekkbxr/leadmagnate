@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { headerDropdownLanguagesList } from '@/utils/fackData/headerDropwodnLanguagesList'
 import { FiPlus } from 'react-icons/fi'
 
@@ -7,7 +8,7 @@ const LanguagesModal = () => {
   return (
     <div className="dropdown nxl-h-item nxl-header-language d-none d-sm-flex">
       <div className="nxl-head-link me-0 nxl-language-link" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-        <img src="/images/flags/4x3/us.svg" alt="" className="img-fluid wd-20" />
+        <Image src="/images/flags/4x3/us.svg" width={20} height={20} alt="Selected language" className="img-fluid" />
       </div>
       <div className="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-language-dropdown">
         <div className="dropdown-divider mt-0"></div>
@@ -28,7 +29,7 @@ const LanguagesModal = () => {
                 return (
                   <div key={id} className="col-sm-4 col-6 language_select">
                     <Link href={"#"} className="d-flex align-items-center gap-2">
-                      <div className="avatar-image avatar-sm"><img src={flag} alt="" className="img-fluid" /></div>
+                      <div className="avatar-image avatar-sm"><Image src={flag} width={20} height={20} alt={language_name} className="img-fluid" /></div>
                       <span>{language_name}</span>
                     </Link>
                   </div>

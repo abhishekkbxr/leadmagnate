@@ -57,7 +57,7 @@ const TabProjectBudget = ({ setFormData, formData, error, setError }) => {
                     <fieldset>
                         <div className="mb-5">
                             <h2 className="fs-16 fw-bold">Budgets spend</h2>
-                            <p className="text-muted">If you need more info, please check <a href="#">FAQ's</a></p>
+                            <p className="text-muted">If you need more info, please check <a href="#">FAQ&apos;s</a></p>
                             <label className="error" style={{ display: 'none' }} />
                         </div>
                         {error && <label id="project-type-error" className="error"><FiAlertTriangle /> This field is required.</label>}

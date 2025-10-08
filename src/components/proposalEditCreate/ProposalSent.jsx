@@ -19,7 +19,7 @@ const ProposalSent = () => {
             <div className="offcanvas-header ht-80 px-4 border-bottom border-gray-5">
                 <div>
                     <h2 className="fs-16 fw-bold text-truncate-1-line">Sent Proposal</h2>
-                    <small className="fs-12 text-muted">Sent proposal to your client's</small>
+                    <small className="fs-12 text-muted">Sent proposal to your client&apos;s</small>
                 </div>
                 <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
             </div>

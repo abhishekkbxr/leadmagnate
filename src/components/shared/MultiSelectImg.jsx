@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import Image from 'next/image';
 import Select from 'react-select'
 const MultiSelectImg = ({ options, defaultSelect, placeholder }) => {
     return (
@@ -21,7 +22,7 @@ const MultiSelectImg = ({ options, defaultSelect, placeholder }) => {
             isSearchable={false}
             formatOptionLabel={assignee => (
                 <div className="user-option d-flex align-items-center gap-3">
-                    <img src={assignee.img} alt="user-image" className='avatar avatar-sm rounded-5' />
+                    <Image src={assignee.img} width={20} height={20} alt={assignee.label} className='avatar avatar-sm rounded-5' />
                     <span>{assignee.label}</span>
                 </div>
             )}

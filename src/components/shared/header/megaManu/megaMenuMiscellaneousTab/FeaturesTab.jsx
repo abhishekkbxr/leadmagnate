@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { FiBarChart2, FiBell, FiBook, FiLifeBuoy, FiLink2, FiShield } from 'react-icons/fi'
 
 const FeaturesTab = () => {
@@ -17,7 +18,7 @@ const FeaturesTab = () => {
                 </div>
                 <div className="col-xxl-3 offset-xxl-1 col-xl-4">
                     <div className="nxl-mega-menu-image">
-                        <img src="/images/banner/1.jpg" alt="" className="img-fluid" />
+                        <Image src="/images/banner/1.jpg" width={300} height={200} alt="Duralux features" className="img-fluid" />
                     </div>
                     <div className="mt-4">
                         <a href="mailto:wrapcoders@gmail.com" className="fs-13 fw-bold">View all features on Duralux &rarr;</a>
