@@ -30,8 +30,20 @@ const OrganisationsCreateContent = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const organisationData = {
+            name: formData.organisation_name,
+            email: formData.organisation_email,
+            phone: formData.organisation_phone,
+            website: formData.organisation_website,
+            city: formData.organisation_city,
+            state: formData.organisation_state,
+            country: formData.organisation_country,
+            industry: formData.organisation_industry,
+            registration_number: formData.organisation_registration_number,
+            tax_id: formData.organisation_tax_id,
+        };
         try {
-            const result = await createOrganisation(formData);
+            const result = await createOrganisation(organisationData);
             if (result.success) {
                 MySwal.fire({
                     icon: 'success',

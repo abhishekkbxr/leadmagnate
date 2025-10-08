@@ -1,7 +1,7 @@
 'use client'
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useAuth } from './AuthContext';
-import { BASE_URL } from '@/utils/api';
+import { getOrganisations } from '@/contentApi/organisationApi';
 
 const OrganisationContext = createContext();
 
@@ -14,12 +14,7 @@ export const OrganisationProvider = ({ children }) => {
         if (token) {
             const fetchOrganisations = async () => {
                 try {
-                    const res = await fetch(`${BASE_URL}/organisations?module_id=3&action=read`, {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    });
-                    const result = await res.json();
+                    const result = await getOrganisations();
                     if (result.success) {
                         setOrganisations(result.data);
                     }
