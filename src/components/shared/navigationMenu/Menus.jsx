@@ -46,7 +46,16 @@ const Menus = () => {
                 { id: 2, name: "Create Organisation", path: "/organisations/create" }
             ]
         },
-        { id: 4, name: 'user', path: '/user', icon: 'feather-users' },
+        {
+            id: 4,
+            name: 'user',
+            path: "#",
+            icon: 'feather-users',
+            dropdownMenu: [
+                { id: 1, name: "Users", path: "/users/list" },
+                { id: 2, name: "Create User", path: "/users/create" }
+            ]
+        },
         { id: 5, name: 'permission', path: '/permission', icon: 'feather-lock' },
         {
             id: 6,

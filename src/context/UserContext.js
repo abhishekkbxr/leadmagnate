@@ -1,7 +1,7 @@
 'use client'
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useAuth } from './AuthContext';
-import { BASE_URL } from '@/utils/api';
+import { getUsers } from '@/contentApi/userApi';
 
 const UserContext = createContext();
 
@@ -10,25 +10,28 @@ export const UserProvider = ({ children }) => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const fetchUsers = async () => {
+        if (token) {
+            try {
+                setLoading(true);
+                const result = await getUsers();
+                if (result.success) {
+                    setUsers(result.data);
+                }
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+    };
+
+    const refreshUsers = () => {
+        fetchUsers();
+    };
+
     useEffect(() => {
         if (token) {
-            const fetchUsers = async () => {
-                try {
-                    const res = await fetch(`${BASE_URL}/users?module_id=3&action=read`, {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    });
-                    const result = await res.json();
-                    if (result.success) {
-                        setUsers(result.data);
-                    }
-                } catch (error) {
-                    console.error("Error fetching users:", error);
-                } finally {
-                    setLoading(false);
-                }
-            };
             fetchUsers();
         } else {
             setLoading(false);
@@ -36,7 +39,7 @@ export const UserProvider = ({ children }) => {
     }, [token]);
 
     return (
-        <UserContext.Provider value={{ users, loading }}>
+        <UserContext.Provider value={{ users, loading, refreshUsers }}>
             {children}
         </UserContext.Provider>
     );
