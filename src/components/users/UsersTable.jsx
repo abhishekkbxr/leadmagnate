@@ -148,14 +148,14 @@ const UsersTable = () => {
         accessorKey: 'organisation_name',
         header: () => 'Organisation',
         cell: ({ row }) => (
-            <Dropdown dropdownItems={organisationActions(row.original)} triggerClass='btn btn-light-brand' triggerText={row.original.organisation_name || 'Not Assigned'} />
+            <Dropdown dropdownItems={organisationActions(row.original)} triggerClass='btn btn-light-brand' triggerText={row.original.organisation_name || 'Not Assigned'} dropdownMenuStyle={{ minWidth: '200px' }} />
         )
     },
     {
         accessorKey: 'role_name',
         header: () => 'Role',
         cell: ({ row }) => (
-            <Dropdown dropdownItems={roleActions(row.original)} triggerClass='btn btn-light-brand' triggerText={row.original.role_name || 'Not Assigned'} />
+            <Dropdown dropdownItems={roleActions(row.original)} triggerClass='btn btn-light-brand' triggerText={row.original.role_name || 'Not Assigned'} dropdownMenuStyle={{ minWidth: '200px' }} />
         )
     },
     {
