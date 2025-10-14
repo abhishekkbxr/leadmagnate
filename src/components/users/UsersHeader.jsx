@@ -1,12 +1,12 @@
+'use client'
 import React from 'react'
 import { FiFilter, FiPaperclip, FiPlus } from 'react-icons/fi'
 import { BsFiletypeCsv, BsFiletypeExe, BsFiletypePdf, BsFiletypeTsx, BsFiletypeXml, BsPrinter } from 'react-icons/bs';
 import Dropdown from '@/components/shared/Dropdown';
 import Link from 'next/link';
+import { useOrganisations } from '@/context/OrganisationContext';
+import { useUsers } from '@/context/UserContext';
 
-const filterAction = [
-    { label: "All", icon: <FiFilter /> },
-];
 export const fileType = [
     { label: "PDF", icon: <BsFiletypePdf /> },
     { label: "CSV", icon: <BsFiletypeCsv /> },
@@ -17,6 +17,14 @@ export const fileType = [
 ];
 
 const UsersHeader = () => {
+    const { organisations } = useOrganisations();
+    const { setSelectedOrganisation } = useUsers();
+
+    const filterAction = [
+        { label: "All", onClick: () => setSelectedOrganisation(null) },
+        ...organisations.map(org => ({ label: org.name, onClick: () => setSelectedOrganisation(org.id) }))
+    ];
+
     return (
         <>
             <div className="d-flex align-items-center gap-2 page-header-right-items-wrapper">
