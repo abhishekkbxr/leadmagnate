@@ -3,6 +3,10 @@ import React, { useState } from 'react'
 import SelectDropdown from '@/components/shared/SelectDropdown'
 import TextArea from '@/components/shared/TextArea'
 import { customerListTagsOptions, leadsGroupsOptions, leadsSourceOptions, leadsStatusOptions, propsalVisibilityOptions, taskAssigneeOptions } from '@/utils/options'
+import { createLead } from '@/contentApi/leadApi'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { useRouter } from 'next/navigation'
 import useLocationData from '@/hooks/useLocationData'
 import { currencyOptionsData } from '@/utils/fackData/currencyOptionsData'
 import { languagesData } from '@/utils/fackData/languagesData'
@@ -14,237 +18,131 @@ import MultiSelectTags from '@/components/shared/MultiSelectTags'
 
 
 
+
+const MySwal = withReactContent(Swal);
 const LeadsCreateContent = () => {
-    const [selectedOption, setSelectedOption] = useState(null);
+    const router = useRouter();
     const { countries, states, cities, loading, error, fetchStates, fetchCities, } = useLocationData();
-    const leadsTags = customerListTagsOptions
+    const [formData, setFormData] = useState({
+        first_name: '',
+        last_name: '',
+        email: '',
+        phone: '',
+        status: 'new',
+        notes: '',
+    });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const leadData = {
+            first_name: formData.first_name,
+            last_name: formData.last_name,
+            email: formData.email,
+            phone: formData.phone,
+            status: formData.status,
+            notes: formData.notes,
+        };
+        try {
+            const result = await createLead(leadData);
+            if (result.success) {
+                MySwal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: result.message,
+                });
+                router.push('/leads/list');
+            } else {
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: result.message || 'Something went wrong!',
+                });
+            }
+        } catch (error) {
+            console.error("Error creating lead:", error);
+            MySwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Failed to create lead.',
+            });
+        }
+    }
+
     return (
-        <>
-            {loading && <Loading />}
-            <div className="col-lg-12">
-                <div className="card stretch stretch-full">
-                    <div className="card-body lead-status">
-                        <div className="mb-5 d-flex align-items-center justify-content-between">
-                            <h5 className="fw-bold mb-0 me-4">
-                                <span className="d-block mb-2">Lead Status :</span>
-                                <span className="fs-12 fw-normal text-muted text-truncate-1-line">Typically refers to adding a new potential customer or sales prospect</span>
-                            </h5>
-                            <a href="#" className="btn btn-sm btn-light-brand">Create Invoice</a>
-                        </div>
+        <div className="col-lg-12">
+            <div className="card stretch stretch-full">
+                <div className="card-body">
+                    <form onSubmit={handleSubmit}>
                         <div className="row">
-                            <div className="col-lg-4 mb-4">
-                                <label className="form-label">Status</label>
-                                <SelectDropdown
-                                    options={leadsStatusOptions}
-                                    selectedOption={selectedOption}
-                                    defaultSelect="new"
-                                    onSelectOption={(option) => setSelectedOption(option)}
+                            <div className="col-lg-6">
+                                <Input
+                                    label="First Name"
+                                    name="first_name"
+                                    value={formData.first_name}
+                                    onChange={handleChange}
+                                    placeholder="Enter first name"
+                                    required
                                 />
                             </div>
-                            <div className="col-lg-4 mb-4">
-                                <label className="form-label">Source</label>
-                                <SelectDropdown
-                                    options={leadsSourceOptions}
-                                    selectedOption={selectedOption}
-                                    defaultSelect="facebook"
-                                    onSelectOption={(option) => setSelectedOption(option)}
+                            <div className="col-lg-6">
+                                <Input
+                                    label="Last Name"
+                                    name="last_name"
+                                    value={formData.last_name}
+                                    onChange={handleChange}
+                                    placeholder="Enter last name"
+                                    required
                                 />
                             </div>
-                            <div className="col-lg-4 mb-4">
-                                <label className="form-label">Visibility:</label>
-                                <SelectDropdown
-                                    options={propsalVisibilityOptions}
-                                    selectedOption={selectedOption}
-                                    defaultSelect="public"
-                                    onSelectOption={(option) => setSelectedOption(option)}
+                            <div className="col-lg-6">
+                                <Input
+                                    label="Email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder="Enter email"
+                                    required
                                 />
                             </div>
-                            <div className="col-lg-4 mb-4">
-                                <label className="form-label">Tags</label>
-                                <MultiSelectTags
-                                    options={leadsTags}
-                                    placeholder=""
+                            <div className="col-lg-6">
+                                <Input
+                                    label="Phone"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    placeholder="Enter phone"
                                 />
                             </div>
-                            <div className="col-lg-4 mb-4">
-                                <label className="form-label">Assigned</label>
-                                <MultiSelectImg
-                                    options={taskAssigneeOptions}
-                                    placeholder=""
+                            <div className="col-lg-6">
+                                <Input
+                                    label="Status"
+                                    name="status"
+                                    value={formData.status}
+                                    onChange={handleChange}
+                                    placeholder="Enter status"
                                 />
                             </div>
-                            <div className="col-lg-4 mb-4">
-                                <label className="form-label">Groups</label>
-                                <MultiSelectTags
-                                    options={leadsGroupsOptions}
-                                    placeholder=""
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <hr className="mt-0" />
-                    <div className="card-body general-info">
-                        <div className="mb-5 d-flex align-items-center justify-content-between">
-                            <h5 className="fw-bold mb-0 me-4">
-                                <span className="d-block mb-2">Lead Info :</span>
-                                <span className="fs-12 fw-normal text-muted text-truncate-1-line">General information for your lead</span>
-                            </h5>
-                            <a href="#" className="btn btn-sm btn-light-brand">Edit Lead</a>
-                        </div>
-                        <Input
-                            icon='feather-user'
-                            label={"Name"}
-                            labelId={"nameInput"}
-                            placeholder={"Name"}
-                            name={"name"}
-                        />
-                        <Input
-                            icon='feather-mail'
-                            label={"Email"}
-                            labelId={"emailInput"}
-                            placeholder={"Email"}
-                            name={"email"}
-                            type={"email"}
-                        />
-                        <Input
-                            icon='feather-link-2'
-                            label={"Username"}
-                            labelId={"usernameInput"}
-                            placeholder={"Username"}
-                            name={"username"}
-                        />
-                        <Input
-                            icon='feather-phone'
-                            label={"Phone"}
-                            labelId={"phoneInput"}
-                            placeholder={"Phone"}
-                            name={"phone"}
-                        />
-                        <Input
-                            icon='feather-compass'
-                            label={"Company"}
-                            labelId={"companyInput"}
-                            placeholder={"Company"}
-                            name={"company"}
-                        />
-                        <Input
-                            icon='feather-briefcase'
-                            label={"Designation"}
-                            labelId={"designationInput"}
-                            placeholder={"Designation"}
-                            name={"designation"}
-                        />
-                        <Input
-                            icon="feather-link"
-                            label={"Website"}
-                            labelId={"websiteInput"}
-                            placeholder={"Website"}
-                            name={"website"}
-                        />
-                        <Input
-                            icon="feather-dollar-sign"
-                            label={"VAT"}
-                            labelId={"vatInput"}
-                            placeholder={"VAT"}
-                            name={"vat"}
-                        />
-                        <TextArea
-                            icon="feather-map-pin"
-                            label={"Address"}
-                            labelId={"addressInput"}
-                            placeholder={"Address"}
-                        />
-                        <TextArea
-                            icon="feather-type"
-                            label={"description"}
-                            labelId={"descriptionInput"}
-                            placeholder={"Description"}
-                            row='5'
-                        />
-                        <div className="row mb-4 align-items-center">
-                            <div className="col-lg-4">
-                                <label className="fw-semibold">Country: </label>
-                            </div>
-                            <div className="col-lg-8">
-                                <SelectDropdown
-                                    options={countries}
-                                    selectedOption={selectedOption}
-                                    defaultSelect="usa"
-                                    onSelectOption={(option) => {
-                                        fetchStates(option.label);
-                                        fetchCities(option.label);
-                                        setSelectedOption(option)
-                                    }}
+                            <div className="col-lg-12">
+                                <TextArea
+                                    label="Notes"
+                                    name="notes"
+                                    value={formData.notes}
+                                    onChange={handleChange}
+                                    placeholder="Enter notes"
                                 />
                             </div>
                         </div>
-                        <div className="row mb-4 align-items-center">
-                            <div className="col-lg-4">
-                                <label className="fw-semibold">State: </label>
-                            </div>
-                            <div className="col-lg-8">
-                                <SelectDropdown
-                                    options={states}
-                                    selectedOption={selectedOption}
-                                    defaultSelect={"new-york"}
-                                    onSelectOption={(option) => setSelectedOption(option)}
-                                />
-                            </div>
+                        <div className="d-flex justify-content-end mt-4">
+                            <button type="submit" className="btn btn-primary">Create Lead</button>
                         </div>
-                        <div className="row mb-4 align-items-center">
-                            <div className="col-lg-4">
-                                <label className="fw-semibold">City: </label>
-                            </div>
-                            <div className="col-lg-8">
-                                <SelectDropdown
-                                    options={cities}
-                                    selectedOption={selectedOption}
-                                    defaultSelect="new-york"
-                                    onSelectOption={(option) => setSelectedOption(option)}
-                                />
-                            </div>
-                        </div>
-                        <div className="row mb-4 align-items-center">
-                            <div className="col-lg-4">
-                                <label className="fw-semibold">Time Zone: </label>
-                            </div>
-                            <div className="col-lg-8">
-                                <SelectDropdown
-                                    options={timezonesData}
-                                    selectedOption={selectedOption}
-                                    defaultSelect="Western Europe Time"
-                                    onSelectOption={(option) => setSelectedOption(option)}
-                                />
-                            </div>
-                        </div>
-                        <div className="row mb-4 align-items-center">
-                            <div className="col-lg-4">
-                                <label className="fw-semibold">Languages: </label>
-                            </div>
-                            <div className="col-lg-8">
-                                <MultiSelectTags
-                                    options={languagesData}
-                                    defaultSelect={[languagesData[25], languagesData[10], languagesData[45]]}
-                                />
-                            </div>
-                        </div>
-                        <div className="row mb-4 align-items-center">
-                            <div className="col-lg-4">
-                                <label className="fw-semibold">Currency: </label>
-                            </div>
-                            <div className="col-lg-8">
-                                <SelectDropdown
-                                    options={currencyOptionsData}
-                                    selectedOption={selectedOption}
-                                    defaultSelect="usd"
-                                    onSelectOption={(option) => setSelectedOption(option)}
-                                />
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
