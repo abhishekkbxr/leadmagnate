@@ -115,10 +115,9 @@ const UsersCreateContent = () => {
                                     onChange={handleChange}
                                     required
                                     options={[
-                                        { value: '1', label: 'Super Admin' },
-                                        { value: '2', label: 'Org-Admin' },
                                         { value: '3', label: 'Manager' },
                                         { value: '4', label: 'Team Lead' },
+                                        { value: '5', label: 'Salesman' },
                                     ]}
                                 />
                             </div>
