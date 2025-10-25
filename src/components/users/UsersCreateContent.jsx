@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import Input from '@/components/shared/Input'
+import Select from '@/components/shared/Select'
 import { createUser } from '@/contentApi/userApi'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -107,12 +108,18 @@ const UsersCreateContent = () => {
                                 />
                             </div>
                             <div className="col-lg-6">
-                                <Input
+                                <Select
                                     label="Role"
                                     name="role_id"
                                     value={formData.role_id}
                                     onChange={handleChange}
-                                    placeholder="Enter role"
+                                    required
+                                    options={[
+                                        { value: '1', label: 'Super Admin' },
+                                        { value: '2', label: 'Org-Admin' },
+                                        { value: '3', label: 'Manager' },
+                                        { value: '4', label: 'Team Lead' },
+                                    ]}
                                 />
                             </div>
                         </div>
