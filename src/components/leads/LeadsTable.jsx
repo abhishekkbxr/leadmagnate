@@ -6,7 +6,7 @@ import Dropdown from '@/components/shared/Dropdown';
 import SelectDropdown from '@/components/shared/SelectDropdown';
 import getIcon from '@/utils/getIcon';
 import { BASE_URL } from '@/utils/api';
-import LeadView from './LeadView';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { useUsers } from '@/context/UserContext';
 import { useOrganisations } from '@/context/OrganisationContext';
@@ -76,10 +76,10 @@ const LeadssTable = () => {
     const [filteredLeads, setFilteredLeads] = useState([]);
     const [organisationUsers, setOrganisationUsers] = useState([]);
     const [selectedOrganisation, setSelectedOrganisation] = useState(null);
-    const [selectedLeadId, setSelectedLeadId] = useState(null);
+    const router = useRouter();
 
     const handleViewLead = (leadId) => {
-        setSelectedLeadId(leadId);
+        router.push(`/leads/view/${leadId}`);
     };
 
     const handleAssignLead = async (lead_id, assigned_user_id, organisation_id) => {
@@ -318,28 +318,20 @@ const LeadssTable = () => {
         },
     ]
     return (
-        <>
-            {selectedLeadId ? (
-                <LeadView leadId={selectedLeadId} />
-            ) : (
-                <>
-                    <Table 
-                        data={filteredLeads} 
-                        columns={columns} 
-                        customSearch={
-                            <div style={{ width: '200px' }}>
-                                <SelectDropdown
-                                    options={organisationOptions}
-                                    defaultSelect="All Organisations"
-                                    onSelectOption={handleOrganisationChange}
-                                    selectedOption={selectedOrganisation}
-                                />
-                            </div>
-                        }
+        <Table 
+            data={filteredLeads} 
+            columns={columns} 
+            customSearch={
+                <div style={{ width: '200px' }}>
+                    <SelectDropdown
+                        options={organisationOptions}
+                        defaultSelect="All Organisations"
+                        onSelectOption={handleOrganisationChange}
+                        selectedOption={selectedOrganisation}
                     />
-                </>
-            )}
-        </>
+                </div>
+            }
+        />
     )
 }
 
