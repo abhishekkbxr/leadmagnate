@@ -17,8 +17,8 @@ const UsersCreateContent = () => {
         name: '',
         email: '',
         phone: '',
-        organisation_id: '',
         role_id: '',
+        password: '',
     });
 
     const handleChange = (e) => {
@@ -32,8 +32,8 @@ const UsersCreateContent = () => {
             name: formData.name,
             email: formData.email,
             phone: formData.phone,
-            organisation_id: formData.organisation_id,
             role_id: formData.role_id,
+            password: formData.password,
         };
         try {
             const result = await createUser(userData);
@@ -98,13 +98,16 @@ const UsersCreateContent = () => {
                                     placeholder="Enter phone"
                                 />
                             </div>
+                            {/* Password input */}
                             <div className="col-lg-6">
                                 <Input
-                                    label="Organisation"
-                                    name="organisation_id"
-                                    value={formData.organisation_id}
+                                    label="Password"
+                                    name="password"
+                                    type="password"
+                                    value={formData.password}
                                     onChange={handleChange}
-                                    placeholder="Enter organisation"
+                                    placeholder="Enter password"
+                                    required
                                 />
                             </div>
                             <div className="col-lg-6">
@@ -115,9 +118,10 @@ const UsersCreateContent = () => {
                                     onChange={handleChange}
                                     required
                                     options={[
+                                        { value: '1', label: 'Super Admin' },
+                                        { value: '2', label: 'Org-Admin' },
                                         { value: '3', label: 'Manager' },
                                         { value: '4', label: 'Team Lead' },
-                                        { value: '5', label: 'Salesman' },
                                     ]}
                                 />
                             </div>
