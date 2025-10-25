@@ -24,6 +24,11 @@ const OrganisationsCreateContent = () => {
         organisation_industry: '',
         organisation_registration_number: '',
         organisation_tax_id: '',
+        // Admin fields
+        admin_name: '',
+        admin_email: '',
+        admin_phone: '',
+        admin_password: '',
     });
 
     const handleChange = (e) => {
@@ -44,6 +49,11 @@ const OrganisationsCreateContent = () => {
             organisation_industry: formData.organisation_industry,
             organisation_registration_number: formData.organisation_registration_number,
             organisation_tax_id: formData.organisation_tax_id,
+            // Admin fields
+            admin_name: formData.admin_name,
+            admin_email: formData.admin_email,
+            admin_phone: formData.admin_phone,
+            admin_password: formData.admin_password,
         };
         try {
             const result = await createOrganisation(organisationData);
@@ -170,6 +180,53 @@ const OrganisationsCreateContent = () => {
                                     onChange={handleChange}
                                     placeholder="Enter tax ID"
                                 />
+                            </div>
+                        </div>
+                        {/* Admin Account Details Section */}
+                        <div className="mt-4">
+                            <h5 className="mb-3">Admin Account Details</h5>
+                            <div className="row">
+                                <div className="col-lg-6">
+                                    <Input
+                                        label="Admin Name"
+                                        name="admin_name"
+                                        value={formData.admin_name}
+                                        onChange={handleChange}
+                                        placeholder="Enter admin name"
+                                        required
+                                    />
+                                </div>
+                                <div className="col-lg-6">
+                                    <Input
+                                        label="Admin Email"
+                                        name="admin_email"
+                                        type="email"
+                                        value={formData.admin_email}
+                                        onChange={handleChange}
+                                        placeholder="Enter admin email"
+                                        required
+                                    />
+                                </div>
+                                <div className="col-lg-6">
+                                    <Input
+                                        label="Admin Phone"
+                                        name="admin_phone"
+                                        value={formData.admin_phone}
+                                        onChange={handleChange}
+                                        placeholder="Enter admin phone"
+                                    />
+                                </div>
+                                <div className="col-lg-6">
+                                    <Input
+                                        label="Admin Password"
+                                        name="admin_password"
+                                        type="password"
+                                        value={formData.admin_password}
+                                        onChange={handleChange}
+                                        placeholder="Enter admin password"
+                                        required
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div className="d-flex justify-content-end mt-4">
