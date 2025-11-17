@@ -50,7 +50,8 @@ const SocialTable = () => {
 
     const handleStatusChange = async (id, newStatus) => {
         try {
-            const updatedConfig = await updateSocialConfig(id, { is_active: newStatus });
+            const booleanStatus = newStatus === true || newStatus === 'active';
+            const updatedConfig = await updateSocialConfig(id, { is_active: booleanStatus });
             setSocialConfigs(prev => prev.map(config => config.id === id ? updatedConfig : config));
             MySwal.fire('Updated!', 'The social configuration status has been updated.', 'success');
         } catch (error) {
@@ -74,12 +75,12 @@ const SocialTable = () => {
             header: () => 'Status',
             cell: ({ row }) => (
                 <select
-                    value={row.original.is_active}
+                    value={row.original.is_active ? 'active' : 'inactive'}
                     onChange={(e) => handleStatusChange(row.original.id, e.target.value)}
                     className="form-select"
                 >
-                    <option value={1}>Active</option>
-                    <option value={0}>Inactive</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
                 </select>
             ),
         },
