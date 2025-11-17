@@ -56,9 +56,19 @@ const Menus = () => {
                 { id: 2, name: "Create User", path: "/users/create" }
             ]
         },
-        { id: 5, name: 'permission', path: '/permission', icon: 'feather-lock' },
         {
-            id: 6,
+            id: 5,
+            name: 'social',
+            path: "#",
+            icon: 'feather-share-2',
+            dropdownMenu: [
+                { id: 1, name: "Social", path: "/social/list" },
+                { id: 2, name: "Create Social", path: "/social/create" }
+            ]
+        },
+        { id: 6, name: 'permission', path: '/permission', icon: 'feather-lock' },
+        {
+            id: 7,
             name: 'leads',
             path: "#",
             icon: 'feather-alert-circle',
@@ -68,11 +78,11 @@ const Menus = () => {
                 { id: 3, name: "Leads Create", path: "/leads/create" }
             ]
         },
-        { id: 7, name: 'lead_activities', path: '/lead-activities', icon: 'feather-activity' },
-        { id: 8, name: 'lead_assignments', path: '/lead-assignments', icon: 'feather-user-plus' },
-        { id: 9, name: 'analytics', path: '/dashboards/analytics', icon: 'feather-bar-chart-2' },
+        { id: 8, name: 'lead_activities', path: '/lead-activities', icon: 'feather-activity' },
+        { id: 9, name: 'lead_assignments', path: '/lead-assignments', icon: 'feather-user-plus' },
+        { id: 10, name: 'analytics', path: '/dashboards/analytics', icon: 'feather-bar-chart-2' },
         {
-            id: 10,
+            id: 11,
             name: 'reports',
             path: "#",
             icon: 'feather-cast',
@@ -84,7 +94,7 @@ const Menus = () => {
             ]
         },
         {
-            id: 11,
+            id: 12,
             name: 'settings',
             path: "#",
             icon: 'feather-settings',
